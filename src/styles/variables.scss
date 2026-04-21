@@ -1,0 +1,22 @@
+// $base-viewport-width: 1920;
+// $base-viewport-height: 1080;
+
+// @function fluid-font($px-size) {
+//   $vw-scale: calc(100vw / #{$base-viewport-width});
+//   $vh-scale: calc(100vh / #{$base-viewport-height});
+
+//   $dynamic-size: calc(#{$px-size} * (#{$vw-scale} + #{$vh-scale}) / 2);
+
+//   $min-size: $px-size * 0.6px;
+//   $max-size: $px-size * 3px;
+
+//   @return clamp(#{$min-size}, #{$dynamic-size}, #{$max-size});
+// }
+
+// $font-sizes: 10, 12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48, 56, 64, 72, 80, 92;
+
+// @each $size in $font-sizes {
+//   .text-#{$size} {
+//     font-size: fluid-font($size);
+//   }
+// }
