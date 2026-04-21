@@ -122,8 +122,8 @@ export default function FloatingSkills() {
 `;
       const iconEl = document.createElement("img");
       iconEl.style.cssText = `
-  width: ${skill.size === "lg" ? "4rem" : skill.size === "sm" ? "4rem" : "4rem"};
-  height: ${skill.size === "lg" ? "4rem" : skill.size === "sm" ? "4rem" : "4rem"};
+  width: ${skill.size === "lg" ? "4rem" : skill.size === "sm" ? "2rem" : "3rem"};
+  height: ${skill.size === "lg" ? "4rem" : skill.size === "sm" ? "2rem" : "3rem"};
 `;
       iconEl.src = skill.icon;
 
