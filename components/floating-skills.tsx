@@ -96,45 +96,48 @@ export default function FloatingSkills() {
     const W = container.offsetWidth;
     const H = container.offsetHeight;
 
-    bubblesRef.current = SKILLS.map((skill) => {
+    bubblesRef.current = SKILLS.map((skill, index) => {
       const { w, h } = BUBBLE_DIMENSIONS[skill.size];
       const { vx, vy } = randomVelocity();
 
       const el = document.createElement("div");
       el.style.cssText = `
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  width: ${w}px;
-  height: ${h}px;
-  padding: 0;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  cursor: default;
-  user-select: none;
-  will-change: transform;
-  transition: opacity 0.5s ease;
-  opacity: 0;
-`;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: ${w}px;
+        height: ${h}px;
+        padding: 0;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        cursor: default;
+        user-select: none;
+        will-change: transform;
+        transition: opacity 0.8s ease;
+        opacity: 0;
+      `;
       const iconEl = document.createElement("img");
+      const iconSize = skill.size === "lg" ? "4.5rem" : skill.size === "sm" ? "2.5rem" : "3.5rem";
       iconEl.style.cssText = `
-  width: ${skill.size === "lg" ? "4rem" : skill.size === "sm" ? "4rem" : "4rem"};
-  height: ${skill.size === "lg" ? "4rem" : skill.size === "sm" ? "4rem" : "4rem"};
-`;
+        width: ${iconSize};
+        height: ${iconSize};
+        filter: drop-shadow(0 0 10px ${skill.color}40);
+      `;
       iconEl.src = skill.icon;
 
       const nameEl = document.createElement("span");
       nameEl.style.cssText = `
-        font-size: ${skill.size === "lg" ? "0.68rem" : "0.62rem"};
-        font-weight: 700;
-        letter-spacing: 0.08em;
+        font-size: ${skill.size === "lg" ? "0.75rem" : "0.65rem"};
+        font-weight: 800;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
         white-space: nowrap;
         color: ${skill.color};
+        text-shadow: 0 0 8px ${skill.color}30;
       `;
       nameEl.textContent = skill.name;
 
@@ -142,12 +145,21 @@ export default function FloatingSkills() {
       el.appendChild(nameEl);
       container.appendChild(el);
 
-      const x = randomBetween(0, Math.max(0, W - w));
-      const y = randomBetween(0, Math.max(0, H - h));
+      // Split placement: 3 on left, 3 on right
+      const isLeft = index < 3;
+      const x = isLeft 
+        ? randomBetween(W * 0.05, W * 0.35 - w) 
+        : randomBetween(W * 0.65, W * 0.95 - w);
+      
+      const y = randomBetween(H * 0.1, H * 0.9 - h);
 
+      // Set initial transform so they don't flash at (0,0)
+      el.style.transform = `translate(${x}px, ${y}px)`;
+
+      // Staggered fade in
       setTimeout(() => {
-        el.style.opacity = String(randomBetween(0.55, 0.85));
-      }, Math.random() * 800);
+        el.style.opacity = String(randomBetween(0.6, 0.9));
+      }, index * 200 + Math.random() * 500);
 
       return { skill, x, y, vx, vy, width: w, height: h, opacity: 0, el };
     });

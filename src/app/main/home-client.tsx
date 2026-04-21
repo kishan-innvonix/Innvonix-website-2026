@@ -1,16 +1,154 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import FloatingSkills from "@/components/floating-skills";
 import Image from "next/image";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Stethoscope,
+  ShoppingBag,
+  Calendar,
+  Building2,
+  Plane,
+  Hotel,
+  Utensils,
+  GraduationCap,
+  Shield,
+} from "lucide-react";
 
 const stats = [
   { value: "300+", label: "PROJECTS" },
   { value: "800+", label: "CLIENTS" },
   { value: "100+", label: "EXPERTS" },
   { value: "250+", label: "HOURS" },
+];
+
+const projectStats = [
+  { value: "240+", label: "PROJECTS COMPLETED" },
+  { value: "50+", label: "EXPERTS" },
+  { value: "200k+", label: "HOURS OF EXPERIENCE" },
+  { value: "100k+", label: "HAPPY CUSTOMERS" },
+];
+
+const showcaseProjects = [
+  {
+    title: "Online Food Ordering Application",
+    description:
+      "Introducing S2O - Scan To Order. A Safe & Smart Way For Customers To Order Their Favorite Food Online. Now Easily Satisfy Your Cravings With Just One Click.",
+    buttonLabel: "VIEW PROJECT",
+    image: "/images/project.png",
+  },
+  {
+    title: "Healthcare Management System",
+    description:
+      "A comprehensive digital health solution that simplifies patient management, scheduling, and electronic health records for modern clinics and hospitals.",
+    buttonLabel: "COMING SOON",
+    image: "/images/project.png",
+  },
+  {
+    title: "E-Learning Platform",
+    description:
+      "Interactive learning experience with real-time video sessions, course management, and collaborative tools for students and educators worldwide.",
+    buttonLabel: "COMING SOON",
+    image: "/images/project.png",
+  },
+];
+
+const whyInnvonixData = [
+  {
+    title: "Quality-Driven Process",
+    description:
+      "We Choose Agile Scrum Methodology For The Projects To Ensure It Flows Smoothly In The Entire Process And Gets Work Done Efficiently. We Communicate With Our Clients For Regular Project Updates As Well.",
+    image: "/images/why_1.png",
+  },
+  {
+    title: "Intelligent Support",
+    description:
+      "We Help Our Clients With Bespoke Development Solutions That Are Easy To Use, Engaging, And Drive Results For Your Company. Get Immediate Assistance From Our Professionals.",
+    image: "/images/why_2.png",
+  },
+  {
+    title: "Extensive Experience",
+    description:
+      "We Have A Team Of Certified Developers Who Believe In Providing Exceptional Service To Our Clients. With Years Of Experience, We Work With Our Proven Strategies That Pledge To Provide The Required Results.",
+    image: "/images/why_3.png",
+  },
+];
+
+const engagementModels = [
+  {
+    title: "Time And Material Based",
+    description:
+      "Based On The Cost Incurred By The Resource Utilization And Material Used In A Particular Time Period.",
+    features: [
+      "High Team Scalability",
+      "No Hidden Costs",
+      "Pay Only For Measurable Work Done",
+      "Quick Onboarding",
+    ],
+  },
+  {
+    title: "Resource Hiring Based",
+    description:
+      "Based On The Need For A Dedicated Pool Of IT Resources As Per The Requirement, Preference And Expectation.",
+    features: [
+      "Full-Time Contracts",
+      "Monthly Billing",
+      "Direct Communication With The Developers",
+      "Discounted Rates For Long-Term Contracts",
+    ],
+  },
+];
+
+const industriesWeServe = [
+  {
+    label: "Healthcare",
+    icon: Stethoscope,
+    pos: { top: "20%", left: "35%" },
+  },
+  {
+    label: "E-Commerce & Retail",
+    icon: ShoppingBag,
+    pos: { top: "22%", left: "60%" },
+  },
+  {
+    label: "Event Management",
+    icon: Calendar,
+    pos: { top: "38%", left: "30%" },
+  },
+  {
+    label: "Banking & Finance",
+    icon: Building2,
+    pos: { top: "45%", left: "68%" },
+  },
+  {
+    label: "Tours & Travel",
+    icon: Plane,
+    pos: { top: "54%", left: "34%" },
+  },
+  {
+    label: "Hospitality",
+    icon: Hotel,
+    pos: { top: "67%", left: "75%" },
+  },
+  {
+    label: "Foods & Restaurants",
+    icon: Utensils,
+    pos: { top: "70%", left: "25%" },
+  },
+  {
+    label: "Education",
+    icon: GraduationCap,
+    pos: { top: "78%", left: "45%" },
+  },
+  {
+    label: "Cyber Security",
+    icon: Shield,
+    pos: { top: "80%", left: "63%" },
+  },
 ];
 
 const services = [
@@ -117,12 +255,31 @@ const services = [
 
 export default function HomeClient() {
   const [selectedService, setSelectedService] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const card = scrollRef.current.firstElementChild as HTMLElement;
+      if (card) {
+        const cardWidth = card.clientWidth;
+        const gap = 40;
+        const scrollAmount = cardWidth + gap;
+        const { scrollLeft } = scrollRef.current;
+        const scrollTo =
+          direction === "left"
+            ? scrollLeft - scrollAmount
+            : scrollLeft + scrollAmount;
+        scrollRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <>
       <section className="relative w-full  overflow-hidden">
-        <div className="bg-[url('/images/hero_bg.svg')] dark:bg-[url('/images/hero_bg_dark.svg')] dark:bg-right bg-left bg-cover bg-no-repeat h-full py-20">
+        <FloatingSkills />
+        <div className="bg-[url('/images/hero_bg.svg')] dark:bg-[url('/images/temp.svg')] bg-size-[100%_100%] bg-no-repeat h-full pt-20 pb-[76px]">
           <div className="relative z-10 flex flex-col items-center  text-center max-w-6xl mx-auto space-y-2  ">
-            <FloatingSkills />
             <h1 className="font-poppins text-4xl z-10 md:text-7xl 2xl:text-[80px] font-medium leading-tight text-primary">
               WEB AND MOBILE
               <br className="hidden sm:block" /> APP DEVELOPMENT
@@ -290,9 +447,9 @@ export default function HomeClient() {
         </Container>
       </section>
 
-      <section className="my-10 mt-20">
+      <section className="my-20">
         <Container>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl min-[1440px]:text-[52px] min-[1920px]:text-[64px] text-primary">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
             OUR SERVICES
           </h1>
           {/* Left side the list of services lik frontend backend etc and on right side the detail about it, in right side on top description and on bottom list of skills like html, css, js etc and on toggle to left side it change right side content accordingly */}
@@ -376,20 +533,332 @@ export default function HomeClient() {
               </div>
 
               {/* Skills Footer */}
-              <div className="relative z-10 mt-20">
-                <div className="flex flex-wrap gap-4">
-                  {services[selectedService]?.skills.map((skill, index) => (
-                    <div
-                      key={index}
-                      className="bg-white/10 backdrop-blur-sm border border-white/20 px-6 py-3 flex items-center gap-3 transition-colors hover:bg-white/20"
-                    >
-                      <span className="text-white font-bold text-base uppercase tracking-wider">
-                        {skill.name}
-                      </span>
-                    </div>
-                  ))}
+              {/* <div className="relative z-10 mt-20"> */}
+              <div className="flex flex-wrap gap-4">
+                {services[selectedService].skills.map((skill, index) => (
+                  <div
+                    key={index}
+                    className="bg-white px-4 py-3 flex items-center gap-3 shadow-lg"
+                  >
+                    {/* <div className="size-8 relative grayscale hover:grayscale-0 transition-all">
+                        <Image
+                          src={skill.icon}
+                          alt={skill.name}
+                          fill
+                          className="object-contain"
+                        />
+                      </div> */}
+                    <span className="text-black font-semibold text-sm md:text-base min-[1440px]:text-[16px] min-[1920px]:text-[18px] uppercase tracking-wider">
+                      {skill.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              {/* </div> */}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="my-20">
+        <Container>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl mb-10 font-bold text-primary uppercase tracking-tight">
+            OUR PROJECTS
+          </h1>
+          <div className="flex flex-col md:flex-row w-full gap-10 md:gap-20">
+            {/* Left side */}
+            <div className="md:w-1/2 flex flex-col gap-8">
+              <h2 className="text-3xl md:text-5xl font-bold flex flex-col gap-2 leading-tight">
+                <span>WHAT YOU ASK IS</span>
+                <span>WHAT YOU GET!</span>
+              </h2>
+            </div>
+
+            {/* Right side stats grid */}
+            <div className="md:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-16">
+              {projectStats.map((stat, index) => (
+                <div key={index} className="relative pt-6">
+                  {/* Gradient Line */}
+                  <div className="absolute top-0 left-0 w-full h-[2px] bg-linear-to-r from-[#e96624] via-[#d1304b] via-[#bb2b52] via[#901f5e] to-[#3f61ca]" />
+
+                  <div className="flex flex-col gap-4">
+                    <span className="text-sm font-extrabold text-foreground opacity-80 uppercase tracking-wider">
+                      {stat.label}
+                    </span>
+                    <span className="text-5xl md:text-6xl font-bold text-primary">
+                      {stat.value}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Glimpse Header */}
+          <div className="mt-10 mb-16 flex flex-col md:flex-row items-center md:items-end justify-between gap-10">
+            <div className="max-w-md 2xl:max-w-xl relative">
+              <h1 className="text-3xl md:text-4xl lg:text-2xl 2xl:text-4xl font-medium font-poppins text-foreground">
+                Here Is A Glimpse Of Some Of Our Interesting Work In Web And
+                Mobile App Development.
+              </h1>
+              {/* Arrow SVG */}
+              <div className="absolute -right-50 top-10 hidden lg:block">
+                <Image
+                  src="/images/curve_arrow.svg"
+                  alt="arrow"
+                  width={150}
+                  height={150}
+                // className="rotate-[15deg]"
+                />
+              </div>
+            </div>
+            <Button className="h-14 px-8 text-lg font-medium flex items-center gap-3">
+              VIEW ALL PROJECTS
+              <svg
+                width="50"
+                height="50"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 12h15" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </Button>
+          </div>
+        </Container>
+
+        {/* Horizontal Scrollable Gallery */}
+        <div
+          ref={scrollRef}
+          className="flex overflow-x-auto snap-x snap-mandatory gap-10 pt-10 pb-5 scrollbar-hide"
+        >
+          {showcaseProjects.map((project, index) => (
+            <div
+              key={index}
+              className="shrink-0 w-full lg:w-[80%] bg-card-light dark:bg-card overflow-hidden flex flex-col lg:flex-row snap-center "
+            >
+              {/* Details side */}
+              <div className="w-full lg:w-3/5 p-8 md:p-16 flex flex-col justify-between items-start gap-10">
+                <div className="space-y-6">
+                  <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold leading-tight">
+                    {project.title}
+                  </h1>
+                  <p className="text-lg md:text-xl text-muted-foreground font-medium max-w-xl leading-relaxed">
+                    {project.description}
+                  </p>
+                </div>
+                <Button className="text-md h-12 font-bold flex items-center gap-3">
+                  {project.buttonLabel}
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </Button>
+              </div>
+
+              {/* Image side */}
+              <div
+                className={`w-full lg:w-2/5 min-h-[400px] bg-primary relative p-8 md:p-12 flex items-center justify-center`}
+              >
+                <div className="relative w-full h-full">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-contain object-center"
+                  />
                 </div>
               </div>
+            </div>
+          ))}
+        </div>
+        {/* paggination button onClick scroll to next and prev project*/}
+        <div className="flex justify-center">
+          <Button
+            className="py-7"
+            variant="ghost"
+            onClick={() => scroll("left")}
+          >
+            <ChevronLeft className="size-10" />
+          </Button>
+          <Button
+            className="py-7"
+            variant="ghost"
+            onClick={() => scroll("right")}
+          >
+            <ChevronRight className="size-10" />
+          </Button>
+        </div>
+      </section>
+
+      <section className="py-20 bg-section-soft dark:bg-card/20">
+        <Container>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl mb-16 font-bold text-primary uppercase tracking-tight">
+            WHY INNVONIX?
+          </h1>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {whyInnvonixData.map((item, index) => (
+              <div
+                key={index}
+                className="bg-white dark:bg-card border border-border rounded-lg overflow-hidden flex flex-col h-full shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="p-8 md:p-10 flex-grow">
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6 leading-tight">
+                    {item.title}
+                  </h2>
+                  <p className="text-base md:text-lg text-muted-foreground font-medium leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+                <div className="mt-auto">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={500}
+                    height={200}
+                    className="w-full object-cover"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="py-20">
+        <Container>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl mb-20 font-bold text-primary uppercase tracking-tight">
+            ENGAGEMENT MODEL
+          </h1>
+
+          <div className="relative">
+            {/* Vertical Separator for desktop */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-primary hidden md:block" />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
+              {engagementModels.map((model, index) => (
+                <div key={index} className="flex flex-col gap-8 relative px-4">
+                  {/* Decorative corner bracket */}
+                  <div className="absolute -top-4 -right-4 size-6">
+                    <Image
+                      src="/images/corner.svg"
+                      alt="corner"
+                      width={20}
+                      height={20}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+
+                  <div className="space-y-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
+                      {model.title}
+                    </h2>
+                    <p className="text-base md:text-lg text-muted-foreground font-medium leading-relaxed">
+                      {model.description}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col gap-3">
+                    {model.features.map((feature, fIndex) => (
+                      <div
+                        key={fIndex}
+                        className="bg-primary/5 dark:bg-primary/10 px-6 py-4 rounded-sm"
+                      >
+                        <span className="text-sm md:text-base font-bold text-foreground tracking-wide">
+                          {feature}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="py-20 relative overflow-hidden bg-white dark:bg-background">
+        <Container>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl mb-10 font-bold text-primary text-center uppercase tracking-tight relative z-10">
+            INDUSTRIES WE SERVE
+          </h1>
+
+          <div className="relative h-[400px] md:h-[800px] w-full flex items-center justify-center">
+            {/* Background Map */}
+            <div className="absolute inset-0 z-0 opacity-20 dark:opacity-10 pointer-events-none">
+              <Image
+                src="/images/bg_map.svg"
+                alt="map"
+                fill
+                className="object-contain"
+              />
+            </div>
+
+            {/* Concentric Rings */}
+            <div className="absolute z-0 pointer-events-none w-[300px] h-[300px] md:w-[600px] md:h-[600px]">
+              <Image
+                src="/images/rings.png"
+                alt="rings"
+                fill
+                className="object-contain opacity-50"
+              />
+            </div>
+
+            {/* Central Logo */}
+            <div className="relative z-20 size-24 md:size-48">
+              <Image
+                src="/images/midde_logo.png"
+                alt="logo"
+                fill
+                className="object-contain"
+              />
+            </div>
+
+            {/* Floating Industry Labels (Desktop) */}
+            <div className="hidden md:block absolute inset-0 z-30">
+              {industriesWeServe.map((industry, index) => (
+                <div
+                  key={index}
+                  className="absolute transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-card border border-border px-4 py-3 flex items-center gap-3 whitespace-nowrap hover:shadow-md transition-shadow cursor-default"
+                  style={{ top: industry.pos.top, left: industry.pos.left }}
+                >
+                  <div className="text-primary">
+                    <industry.icon size={20} strokeWidth={2.5} />
+                  </div>
+                  <span className="text-sm font-bold text-foreground">
+                    {industry.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile View (Grid) */}
+            <div className="md:hidden absolute -bottom-20 inset-x-0 grid grid-cols-2 gap-4 px-4">
+              {industriesWeServe.map((industry, index) => (
+                <div
+                  key={index}
+                  className="bg-white dark:bg-card border border-border px-3 py-2 rounded-lg shadow-sm flex items-center gap-2"
+                >
+                  <div className="text-primary">
+                    <industry.icon size={16} strokeWidth={2.5} />
+                  </div>
+                  <span className="text-xs font-bold text-foreground">
+                    {industry.label}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </Container>
