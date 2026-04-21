@@ -578,12 +578,12 @@ export default function HomeClient() {
         {/* Horizontal Scrollable Gallery */}
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto snap-x snap-mandatory gap-10 pb-10 scrollbar-hide"
+          className="flex overflow-x-auto snap-x snap-mandatory gap-10 pt-10 pb-5 scrollbar-hide"
         >
           {showcaseProjects.map((project, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-full lg:w-[80%] bg-card-light dark:bg-card overflow-hidden flex flex-col lg:flex-row snap-center "
+              className="shrink-0 w-full lg:w-[80%] bg-card-light dark:bg-card overflow-hidden flex flex-col lg:flex-row snap-center "
             >
               {/* Details side */}
               <div className="w-full lg:w-3/5 p-8 md:p-16 flex flex-col justify-between items-start gap-10">
@@ -631,10 +631,18 @@ export default function HomeClient() {
         </div>
         {/* paggination button onClick scroll to next and prev project*/}
         <div className="flex justify-center">
-          <Button variant="ghost" onClick={() => scroll("left")}>
+          <Button
+            className="py-7"
+            variant="ghost"
+            onClick={() => scroll("left")}
+          >
             <ChevronLeft className="size-10" />
           </Button>
-          <Button variant="ghost" onClick={() => scroll("right")}>
+          <Button
+            className="py-7"
+            variant="ghost"
+            onClick={() => scroll("right")}
+          >
             <ChevronRight className="size-10" />
           </Button>
         </div>
