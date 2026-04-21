@@ -1,60 +1,41 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Monitor, Moon, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-type ThemeMode = "light" | "dark" | "system";
+type ThemeMode = "light" | "dark";
 const THEME_STORAGE_KEY = "theme-mode";
 
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
-  const [mode, setMode] = useState<ThemeMode>("system");
+  const [mode, setMode] = useState<ThemeMode>("light");
 
   useEffect(() => {
     // Read from localStorage on mount
     const savedMode = localStorage.getItem(THEME_STORAGE_KEY);
-    if (
-      savedMode === "light" ||
-      savedMode === "dark" ||
-      savedMode === "system"
-    ) {
-      setMode(savedMode);
+    if (savedMode === "light" || savedMode === "dark") {
+      setMode(savedMode as ThemeMode);
+    } else {
+      // Default to system preference if no saved choice
+      const systemPrefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      setMode(systemPrefersDark ? "dark" : "light");
     }
     setMounted(true);
   }, []);
 
   const applyTheme = (currentMode: ThemeMode) => {
     const root = document.documentElement;
-    const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
-    const resolvedTheme =
-      currentMode === "system"
-        ? systemPrefersDark
-          ? "dark"
-          : "light"
-        : currentMode;
-
-    root.classList.toggle("dark", resolvedTheme === "dark");
-    root.style.colorScheme = resolvedTheme;
+    root.classList.toggle("dark", currentMode === "dark");
+    root.style.colorScheme = currentMode;
   };
 
   useEffect(() => {
     if (mounted) {
       applyTheme(mode);
     }
-  }, [mode, mounted]);
-
-  // Listen for system theme changes if mode is "system"
-  useEffect(() => {
-    if (!mounted || mode !== "system") return;
-
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = () => applyTheme("system");
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
   }, [mode, mounted]);
 
   // Sync with other tabs
@@ -64,8 +45,8 @@ export default function ThemeToggle() {
     const handleStorage = (e: StorageEvent) => {
       if (e.key === THEME_STORAGE_KEY) {
         const newMode = e.newValue;
-        if (newMode === "light" || newMode === "dark" || newMode === "system") {
-          setMode(newMode);
+        if (newMode === "light" || newMode === "dark") {
+          setMode(newMode as ThemeMode);
         }
       }
     };
@@ -74,36 +55,32 @@ export default function ThemeToggle() {
     return () => window.removeEventListener("storage", handleStorage);
   }, [mounted]);
 
-  const cycleThemeMode = () => {
-    const nextMode =
-      mode === "light" ? "dark" : mode === "dark" ? "system" : "light";
+  const toggleTheme = () => {
+    const nextMode = mode === "light" ? "dark" : "light";
     localStorage.setItem(THEME_STORAGE_KEY, nextMode);
     setMode(nextMode);
   };
 
-  // Provide a fallback to avoid layout shift before hydration
   if (!mounted) {
     return (
-      <Button variant="ghost" size="icon-sm" disabled className="opacity-50">
-        <Monitor className="size-4" />
+      <Button variant="ghost" size="icon" disabled className="opacity-50">
+        <Sun className="size-6 text-foreground" />
       </Button>
     );
   }
 
-  const CurrentIcon = mode === "light" ? Sun : mode === "dark" ? Moon : Monitor;
-  const nextLabel =
-    mode === "light" ? "dark" : mode === "dark" ? "system" : "light";
+  const CurrentIcon = mode === "light" ? Sun : Moon;
 
   return (
     <Button
       type="button"
       variant="ghost"
       size="icon"
-      onClick={cycleThemeMode}
-      aria-label={`Current theme: ${mode}. Switch to ${nextLabel}`}
-      title={`Theme: ${mode} (click for ${nextLabel})`}
+      onClick={toggleTheme}
+      aria-label={`Switch to ${mode === "light" ? "dark" : "light"} mode`}
+      title={`Switch to ${mode === "light" ? "dark" : "light"} mode`}
     >
-      <CurrentIcon className="text-foreground" />
+      <CurrentIcon className="size-6 text-foreground" />
     </Button>
   );
 }
