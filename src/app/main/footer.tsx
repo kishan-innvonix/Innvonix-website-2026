@@ -60,7 +60,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#0a0a0a] text-white pt-20 pb-10 overflow-hidden">
+    <footer className="relative bg-footer-bg text-white pt-20 pb-10 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
         <Image
@@ -73,24 +73,24 @@ export default function Footer() {
 
       <Container className="relative z-10">
         {/* Top Section: Logo and Links */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
-          {/* Logo Column */}
-          <div className="md:col-span-4">
-            <Image
-              src="/images/logo_dark.png"
-              alt="Innvonix Logo"
-              width={250}
-              height={80}
-              className="mb-8"
-            />
-          </div>
-
+        {/* Logo Column */}
+        <div className="md:col-span-4">
+          <Image
+            src="/images/logo_dark.png"
+            alt="Innvonix Logo"
+            width={300}
+            height={80}
+            className="mb-8"
+          />
+        </div>
+        {/* our company and hire developer in one line by left and right  */}
+        <div className="grid grid-cols-1 md:grid-cols-5  mb-10">
           {/* Links Columns */}
-          <div className="md:col-span-4">
-            <h3 className="text-[#e23e57] text-xl font-bold mb-8 uppercase tracking-wider">
+          <div className="md:col-span-2">
+            <h3 className="text-primary text-xl font-bold mb-8 uppercase tracking-wider">
               Our Company
             </h3>
-            <div className="grid grid-cols-2 gap-y-4 gap-x-8">
+            <div className="grid grid-cols-2 gap-y-2 gap-x-0">
               {companyLinks.map((link, index) => (
                 <Link
                   key={index}
@@ -102,12 +102,12 @@ export default function Footer() {
               ))}
             </div>
           </div>
-
-          <div className="md:col-span-4">
-            <h3 className="text-[#e23e57] text-xl font-bold mb-8 uppercase tracking-wider">
+          <div />
+          <div className="md:col-span-2">
+            <h3 className="text-primary text-xl font-bold mb-8 uppercase tracking-wider">
               Hire Developers
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-8">
               {hireLinks.map((link, index) => (
                 <Link
                   key={index}
@@ -121,38 +121,43 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* horizontal devider with linear gradiant */}
+        <div className="w-full h-0.5 bg-gradient-to-r from-primary to-accent-purple mb-10" />
+
         {/* Contact Section */}
         <div className="mb-20">
           <h1 className="text-4xl md:text-6xl font-bold text-primary mb-4">
             LET'S GET IN TOUCH
           </h1>
           <p className="text-lg md:text-xl font-medium mb-12">
-            <span className="text-[#b030b0]">Say Hi!</span> and we won't
-            disappoint you.... Promise!
+            <span className="bg-gradient-to-r from-primary to-accent-purple bg-clip-text text-transparent">
+              Say Hi!
+            </span>{" "}
+            and we won't disappoint you.... Promise!
           </p>
 
-          <div className="bg-[#151515]/80 backdrop-blur-sm rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
+          <div className="bg-footer-card/80 overflow-hidden grid grid-cols-1 md:grid-cols-2">
             {/* Form Side */}
-            <div className="p-8 md:p-12 border-r border-[#333]">
+            <div className="p-8 md:p-12">
               <form className="space-y-6">
                 <div>
                   <input
                     type="text"
                     placeholder="Your Name*"
-                    className="w-full bg-[#0a0a0a]/50 border border-[#333] rounded-sm px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white"
+                    className="w-full bg-footer-bg px-4 py-3 outline-none transition-colors text-white"
                   />
                 </div>
                 <div>
                   <input
                     type="email"
                     placeholder="Email Address"
-                    className="w-full bg-[#0a0a0a]/50 border border-[#333] rounded-sm px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white"
+                    className="w-full bg-footer-bg  px-4 py-3 outline-none transition-colors text-white"
                   />
                 </div>
                 <div className="flex gap-4">
                   <div className="w-20 shrink-0">
                     <div className="relative">
-                      <select className="w-full bg-[#0a0a0a]/50 border border-[#333] rounded-sm px-3 py-3 appearance-none focus:outline-none focus:border-primary text-white">
+                      <select className="w-full bg-footer-bg  px-3 py-3 appearance-none outline-none text-white">
                         <option>+01</option>
                         <option>+91</option>
                       </select>
@@ -162,18 +167,18 @@ export default function Footer() {
                   <input
                     type="tel"
                     placeholder="Contact Number"
-                    className="flex-grow bg-[#0a0a0a]/50 border border-[#333] rounded-sm px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white"
+                    className="flex-grow bg-[#0a0a0a]/50  px-4 py-3 outline-none transition-colors text-white"
                   />
                 </div>
                 <div>
                   <input
                     type="text"
                     placeholder="Subject"
-                    className="w-full bg-[#0a0a0a]/50 border border-[#333] rounded-sm px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white"
+                    className="w-full bg-footer-bg/50 border  px-4 py-3 outline-none transition-colors text-white"
                   />
                 </div>
                 <div className="relative">
-                  <select className="w-full bg-[#0a0a0a]/50 border border-[#333] rounded-sm px-4 py-3 appearance-none focus:outline-none focus:border-primary text-white">
+                  <select className="w-full bg-[#0a0a0a]/50  px-4 py-3 appearance-none outline-none text-white">
                     <option>Looking For...</option>
                     <option>Web Development</option>
                     <option>Mobile App Development</option>
@@ -183,11 +188,11 @@ export default function Footer() {
                 <div>
                   <textarea
                     placeholder="Message"
-                    rows={4}
-                    className="w-full bg-[#0a0a0a]/50 border border-[#333] rounded-sm px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white resize-none"
+                    rows={1}
+                    className="w-full bg-[#0a0a0a]/50  px-4 py-3 outline-none transition-colors text-white resize-none"
                   />
                 </div>
-                <Button className="w-48 h-12 bg-primary hover:bg-primary/90 text-white font-bold rounded-sm uppercase tracking-wide">
+                <Button className="w-48 h-12 bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wide">
                   Send Inquiry
                 </Button>
               </form>
@@ -196,35 +201,35 @@ export default function Footer() {
             {/* Info Side */}
             <div className="p-8 md:p-12 flex flex-col gap-10">
               <div className="flex gap-6 items-start">
-                <div className="size-12 bg-[#0a0a0a] rounded-sm flex items-center justify-center shrink-0 border border-[#333]">
+                <div className="size-14 bg-footer-bg  flex items-center justify-center shrink-0">
                   <Mail className="text-primary size-6" />
                 </div>
                 <div>
-                  <p className="text-gray-400 font-medium mb-1">Email</p>
+                  <p className="text-gray-400 font-medium ">Email</p>
                   <p className="text-lg font-bold">hello@innvonix.com</p>
                 </div>
               </div>
 
               <div className="flex gap-6 items-start">
-                <div className="size-12 bg-[#0a0a0a] rounded-sm flex items-center justify-center shrink-0 border border-[#333]">
+                <div className="size-14 bg-footer-bg  flex items-center justify-center shrink-0">
                   <Phone className="text-primary size-6" />
                 </div>
                 <div>
-                  <p className="text-gray-400 font-medium mb-1">Contact</p>
+                  <p className="text-gray-400 font-medium ">Contact</p>
                   <p className="text-lg font-bold">+91 70964 99910</p>
                 </div>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-6 font-bold">
                 <div>
-                  <p className="text-primary font-bold mb-2 uppercase">India</p>
+                  <p className="text-primary font-bold mb-1 uppercase">India</p>
                   <p className="text-sm opacity-80 leading-relaxed max-w-sm">
                     1105-1108, I Square Corporate Park, Shukan Mall Cross Road,
                     Science City Road, Sola, Ahmedabad-380060, India
                   </p>
                 </div>
                 <div>
-                  <p className="text-primary font-bold mb-2 uppercase">USA</p>
+                  <p className="text-primary font-bold mb-1 uppercase">USA</p>
                   <p className="text-sm opacity-80 leading-relaxed max-w-sm">
                     5 Penn Plaza, Suite# 1918, New York, NY 10001
                   </p>
@@ -240,7 +245,7 @@ export default function Footer() {
                     <Link
                       key={index}
                       href={social.href}
-                      className="bg-transparent flex items-center justify-center hover:border-primary hover:text-primary transition-all transition-colors"
+                      className="bg-transparent flex items-center justify-center transition-all transition-colors  size-10"
                     >
                       <social.icon />
                     </Link>
@@ -252,7 +257,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#333] flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="pt-8 border-t border-footer-border flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-10">
             <Image
               src="/images/logo_dark.png"

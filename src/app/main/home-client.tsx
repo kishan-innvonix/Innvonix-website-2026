@@ -539,7 +539,7 @@ export default function HomeClient() {
             </div>
           </div>
           {/* Glimpse Header */}
-          <div className="mt-40 mb-16 flex flex-col md:flex-row items-center md:items-end justify-between gap-10">
+          <div className="mt-10 mb-16 flex flex-col md:flex-row items-center md:items-end justify-between gap-10">
             <div className="max-w-md 2xl:max-w-xl relative">
               <h1 className="text-3xl md:text-4xl lg:text-2xl 2xl:text-4xl font-medium font-poppins text-foreground">
                 Here Is A Glimpse Of Some Of Our Interesting Work In Web And
@@ -583,7 +583,7 @@ export default function HomeClient() {
           {showcaseProjects.map((project, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-full lg:w-[80%] bg-[#F9F9F9] dark:bg-card overflow-hidden flex flex-col lg:flex-row snap-center "
+              className="flex-shrink-0 w-full lg:w-[80%] bg-card-light dark:bg-card overflow-hidden flex flex-col lg:flex-row snap-center "
             >
               {/* Details side */}
               <div className="w-full lg:w-3/5 p-8 md:p-16 flex flex-col justify-between items-start gap-10">
@@ -640,7 +640,7 @@ export default function HomeClient() {
         </div>
       </section>
 
-      <section className="py-20 bg-[#fef8f8] dark:bg-card/20">
+      <section className="py-20 bg-section-soft dark:bg-card/20">
         <Container>
           <h1 className="text-3xl md:text-4xl lg:text-5xl mb-16 font-bold text-primary uppercase tracking-tight">
             WHY INNVONIX?
