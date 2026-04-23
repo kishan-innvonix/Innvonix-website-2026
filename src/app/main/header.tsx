@@ -7,8 +7,8 @@ import ThemeToggle from "@/components/theme-toggle";
 
 export default function Header() {
   return (
-    <header className="h-1/12 max-w-7xl mx-auto flex items-center w-full">
-      <div className="flex items-center justify-between py-2 px-6 w-full">
+    <header className="h-20 max-w-7xl mx-auto flex items-center w-full">
+      <div className="flex items-center justify-between px-6 w-full">
         <Image
           loading="eager"
           src={logoDark}

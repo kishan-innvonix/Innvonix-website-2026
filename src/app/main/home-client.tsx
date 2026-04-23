@@ -278,34 +278,34 @@ export default function HomeClient() {
     <>
       <section className="relative w-full  overflow-hidden">
         <FloatingSkills />
-        <div className="bg-[url('/images/hero_bg.svg')] dark:bg-[url('/images/temp.svg')] bg-size-[100%_100%] bg-no-repeat h-full pt-20 pb-[76px]">
-          <div className="relative z-10 flex flex-col items-center  text-center max-w-6xl mx-auto space-y-2  ">
-            <h1 className="font-poppins text-4xl z-10 md:text-7xl 2xl:text-[80px] font-medium leading-tight text-primary">
+        <div className="bg-[url('/images/hero_bg.svg')] dark:bg-[url('/images/temp.svg')] bg-size-[100%_100%] bg-no-repeat h-full">
+          <div className="relative z-10 flex flex-col items-center  text-center max-w-6xl mx-auto space-y-2 py-16 2xl:py-24">
+            <h1 className="font-poppins text-4xl z-10 md:text-6xl 2xl:text-7xl font-medium leading-tight text-primary">
               WEB AND MOBILE
               <br className="hidden sm:block" /> APP DEVELOPMENT
             </h1>
 
-            <p className="text-lg md:text-xl 2xl:text-[32px] z-10 text-foreground font-medium font-manrope max-w-xl leading-relaxed mb-8">
+            <p className="text-lg md:text-xl 2xl:text-2xl z-10 text-foreground font-medium font-manrope max-w-xl leading-relaxed mb-6 2xl:mb-10">
               Your Go-To-Partner for Website And Mobile App Development
               Projects!
             </p>
-            <p className="text-sm md:text-base 2xl:text-[20px] z-10 text-foreground font-medium font-manrope max-w-xl leading-relaxed">
+            <p className="text-sm md:text-base 2xl:text-lg z-10 text-foreground font-medium font-manrope max-w-xl leading-relaxed">
               We are bringing ideas to life. Our expert web and mobile team can
               develop impeccable solutions. We build e-commerce portals, custom
               web and mobile applications with robust user-experience matching
               your deadlines.
             </p>
-            <div className="flex z-10 flex-col sm:flex-row items-center gap-5 pt-8 font-poppins">
+            <div className="flex z-10 flex-col sm:flex-row items-center gap-5 pt-6 2xl:pt-10 font-poppins">
               <Button
                 size="lg"
-                className="h-14 px-8 text-sm md:text-base  font-semibold rounded-2xl "
+                className="h-14 px-8 text-sm md:text-base  font-semibold"
               >
                 GET A QUOTE
               </Button>
               <Button
                 size="lg"
                 variant="ghost"
-                className="h-14 px-8 text-sm md:text-base font-semibold rounded-2xl bg-background/50 backdrop-blur-md hover:bg-muted transition-colors"
+                className="h-14 px-8 text-sm md:text-base font-semibold bg-foreground text-background"
               >
                 OUR SOLUTION
               </Button>
@@ -316,14 +316,14 @@ export default function HomeClient() {
       <div className="flex items-center text-xl md:text-4xl justify-evenly w-full font-poppins font-semibold py-10 border-y border-primary">
         {stats.map((stat, index) => (
           <Fragment key={index}>
-            <div className="text-primary text-center">
+            <div className="text-primary text-center leading-none">
               {stat.value} <br />{" "}
               <span className="text-foreground text-sm md:text-lg font-medium">
                 {stat.label}
               </span>
             </div>
             {index < stats.length - 1 && (
-              <div className="h-16 w-px bg-divider" />
+              <div className="h-14 w-px bg-divider" />
             )}
           </Fragment>
         ))}
@@ -331,17 +331,12 @@ export default function HomeClient() {
 
       <section className="my-10">
         <Container>
-          <h1 className="font-poppins text-4xl lg:text-7xl 2xl:text-[80px] font-medium flex justify-start items-center gap-10 mb-10">
-            <span> WE INNOVATE </span>
-            <Image
-              src="/images/star.png"
-              alt="star"
-              width={32}
-              height={32}
-            />{" "}
+          <h1 className="font-poppins text-4xl xl:text-6xl mxl:text-7xl font-semibold flex justify-start items-center gap-10 mb-10">
+            <span>WE INNOVATE </span>
+            <Image src="/images/star.png" alt="star" width={32} height={32} />
             <span> WE LISTEN</span>
           </h1>
-          <h1 className="font-poppins text-4xl lg:text-7xl 2xl:text-[80px] font-medium flex justify-end items-center gap-10">
+          <h1 className="font-poppins text-4xl xl:text-6xl mxl:text-7xl font-semibold flex justify-end items-center gap-10">
             <span>WE CARE</span>{" "}
             <Image src="/images/star.png" alt="star" width={32} height={32} />{" "}
             <span>WE DELIVER</span>
@@ -356,13 +351,13 @@ export default function HomeClient() {
         </div>
         {/* right about */}
         <div className="flex flex-col gap-5 justify-center w-1/2">
-          <h1 className="font-poppins text-3xl md:text-4xl lg:text-6xl font-medium mb-10">
+          <h1 className="font-poppins text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-semibold mb-10">
             WE ARE INNVONIX
           </h1>
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">
-            The name “Innvonix” stands for invention & innovation.
+          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold">
+            The name “Innvonix” stands for <br /> invention & innovation.
           </h2>
-          <p className="font-medium">
+          <p className="font-medium text-lg  2xl:text-xl">
             Innvonix Tech Solutions is a leading website design and development
             company in India. Established in 2014, we offer a wide range of
             software development services across multiple industries. With the
@@ -375,14 +370,14 @@ export default function HomeClient() {
 
       <section className="my-20">
         <Container>
-          <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-primary mb-5">
+          <h1 className="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-primary mb-5">
             OUR PROCESS
           </h1>
           <h3 className="text-lg md:text-xl font-bold mb-5">
             <span className="text-primary ">Design. Build. Excel.</span> Taking
             your business to the next level!
           </h3>
-          <div className="flex gap-6 h-110 mt-10">
+          <div className="flex gap-6 h-100 2xl:h-110 mt-10">
             {["Discovery", "Strategy", "Design", "Build"].map((item, index) => (
               <div
                 className={`flex flex-col justify-between p-4 h-[90%] border border-card-border dark:bg-card-bg ${
@@ -404,11 +399,11 @@ export default function HomeClient() {
                   className="block dark:hidden"
                 />
                 <div className="flex flex-col gap-5">
-                  <h1 className="font-poppins text-2xl md:text-3xl min-[1440px]:text-[30px] min-[1920px]:text-[36px] font-medium flex justify-start items-center gap-10">
+                  <h1 className="font-poppins text-2xl md:text-3xl font-semibold flex justify-start items-center gap-10">
                     <span> {item} </span>
                   </h1>
 
-                  <p>
+                  <p className="font-semibold">
                     Any successful project starts with a precise understanding
                     and documentation of the Business and Technical
                     requirements.
@@ -422,7 +417,7 @@ export default function HomeClient() {
 
       <section className="my-20">
         <Container>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary">
             OUR SERVICES
           </h1>
           {/* Left side the list of services lik frontend backend etc and on right side the detail about it, in right side on top description and on bottom list of skills like html, css, js etc and on toggle to left side it change right side content accordingly */}
@@ -507,13 +502,13 @@ export default function HomeClient() {
 
       <section className="my-20">
         <Container>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl mb-10 font-bold text-primary uppercase tracking-tight">
+          <h1 className="text-3xl md:text-4xl xl:text-5xl mb-10 font-extrabold text-primary uppercase tracking-tight">
             OUR PROJECTS
           </h1>
           <div className="flex flex-col md:flex-row w-full gap-10 md:gap-20">
             {/* Left side */}
             <div className="md:w-1/2 flex flex-col gap-8">
-              <h2 className="text-3xl md:text-5xl font-bold flex flex-col gap-2 leading-tight">
+              <h2 className="text-3xl md:text-4xl font-bold flex flex-col gap-2 leading-tight">
                 <span>WHAT YOU ASK IS</span>
                 <span>WHAT YOU GET!</span>
               </h2>
@@ -541,7 +536,7 @@ export default function HomeClient() {
           {/* Glimpse Header */}
           <div className="mt-10 mb-16 flex flex-col md:flex-row items-center md:items-end justify-between gap-10">
             <div className="max-w-md 2xl:max-w-xl relative">
-              <h1 className="text-3xl md:text-4xl lg:text-2xl 2xl:text-4xl font-medium font-poppins text-foreground">
+              <h1 className="text-3xl md:text-4xl lg:text-2xl 2xl:text-3xl font-medium font-poppins text-foreground">
                 Here Is A Glimpse Of Some Of Our Interesting Work In Web And
                 Mobile App Development.
               </h1>
@@ -552,7 +547,6 @@ export default function HomeClient() {
                   alt="arrow"
                   width={150}
                   height={150}
-                  // className="rotate-[15deg]"
                 />
               </div>
             </div>
@@ -650,7 +644,7 @@ export default function HomeClient() {
 
       <section className="py-20 bg-section-soft dark:bg-card/20">
         <Container>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl mb-16 font-bold text-primary uppercase tracking-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl mb-16 font-extrabold text-primary uppercase tracking-tight">
             WHY INNVONIX?
           </h1>
 
@@ -658,7 +652,7 @@ export default function HomeClient() {
             {whyInnvonixData.map((item, index) => (
               <div
                 key={index}
-                className="bg-white dark:bg-card border border-border rounded-lg overflow-hidden flex flex-col h-full shadow-sm hover:shadow-md transition-shadow"
+                className="bg-white dark:bg-card border border-border  overflow-hidden flex flex-col h-full shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="p-8 md:p-10 flex-grow">
                   <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6 leading-tight">
@@ -685,7 +679,7 @@ export default function HomeClient() {
 
       <section className="py-20">
         <Container>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl mb-20 font-bold text-primary uppercase tracking-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl mb-20 font-extrabold text-primary uppercase tracking-tight">
             ENGAGEMENT MODEL
           </h1>
 
@@ -720,7 +714,7 @@ export default function HomeClient() {
                     {model.features.map((feature, fIndex) => (
                       <div
                         key={fIndex}
-                        className="bg-primary/5 dark:bg-primary/10 px-6 py-4 rounded-sm"
+                        className="bg-primary/5 dark:bg-primary/10 px-6 py-4 "
                       >
                         <span className="text-sm md:text-base font-bold text-foreground tracking-wide">
                           {feature}
@@ -736,38 +730,26 @@ export default function HomeClient() {
       </section>
       <section className="py-20 relative overflow-hidden bg-white dark:bg-background">
         <Container>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl mb-10 font-bold text-primary text-center uppercase tracking-tight relative z-10">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl mb-10 font-extrabold text-primary text-center uppercase tracking-tight relative z-10">
             INDUSTRIES WE SERVE
           </h1>
 
           <div className="relative h-[400px] md:h-[800px] w-full flex items-center justify-center">
             {/* Background Map */}
-            <div className="absolute inset-0 z-0 opacity-20 dark:opacity-10 pointer-events-none">
-              <Image
-                src="/images/bg_map.svg"
-                alt="map"
-                fill
-                className="object-contain"
-              />
-            </div>
+            <Image
+              src="/images/bg_map.svg"
+              alt="map"
+              fill
+              className="object-contain"
+            />
 
             {/* Concentric Rings */}
             <div className="absolute z-0 pointer-events-none w-[300px] h-[300px] md:w-[600px] md:h-[600px]">
               <Image
-                src="/images/rings.png"
+                src="/images/group.svg"
                 alt="rings"
                 fill
-                className="object-contain opacity-50"
-              />
-            </div>
-
-            {/* Central Logo */}
-            <div className="relative z-20 size-24 md:size-48">
-              <Image
-                src="/images/midde_logo.png"
-                alt="logo"
-                fill
-                className="object-contain"
+                className="object-contain "
               />
             </div>
 

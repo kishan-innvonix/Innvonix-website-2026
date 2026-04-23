@@ -121,7 +121,12 @@ export default function FloatingSkills() {
         opacity: 0;
       `;
       const iconEl = document.createElement("img");
-      const iconSize = skill.size === "lg" ? "4.5rem" : skill.size === "sm" ? "2.5rem" : "3.5rem";
+      const iconSize =
+        skill.size === "lg"
+          ? "4.5rem"
+          : skill.size === "sm"
+            ? "2.5rem"
+            : "3.5rem";
       iconEl.style.cssText = `
         width: ${iconSize};
         height: ${iconSize};
@@ -142,24 +147,26 @@ export default function FloatingSkills() {
       nameEl.textContent = skill.name;
 
       el.appendChild(iconEl);
-      el.appendChild(nameEl);
       container.appendChild(el);
 
       // Split placement: 3 on left, 3 on right
       const isLeft = index < 3;
-      const x = isLeft 
-        ? randomBetween(W * 0.05, W * 0.35 - w) 
+      const x = isLeft
+        ? randomBetween(W * 0.05, W * 0.35 - w)
         : randomBetween(W * 0.65, W * 0.95 - w);
-      
+
       const y = randomBetween(H * 0.1, H * 0.9 - h);
 
       // Set initial transform so they don't flash at (0,0)
       el.style.transform = `translate(${x}px, ${y}px)`;
 
       // Staggered fade in
-      setTimeout(() => {
-        el.style.opacity = String(randomBetween(0.6, 0.9));
-      }, index * 200 + Math.random() * 500);
+      setTimeout(
+        () => {
+          el.style.opacity = String(randomBetween(0.6, 0.9));
+        },
+        index * 200 + Math.random() * 500,
+      );
 
       return { skill, x, y, vx, vy, width: w, height: h, opacity: 0, el };
     });
