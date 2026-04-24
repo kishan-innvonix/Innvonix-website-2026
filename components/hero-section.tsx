@@ -4,7 +4,8 @@ import { Fragment, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import FloatingSkills from "@/components/floating-skills";
 
-const CELL = 91;
+// Default cell size for desktop
+const DEFAULT_CELL = 91;
 
 function injectGridKeyframes() {
   if (typeof document === "undefined") return;
@@ -20,20 +21,25 @@ function injectGridKeyframes() {
   document.head.appendChild(s);
 }
 
-function buildGrid(el: HTMLDivElement, containerW: number, containerH: number) {
+function buildGrid(
+  el: HTMLDivElement,
+  containerW: number,
+  containerH: number,
+  cellSize: number
+) {
   el.innerHTML = "";
 
   // Expand to fully cover: ceil ensures no gaps at edges
-  const cols = Math.ceil(containerW / CELL);
-  const rows = Math.ceil(containerH / CELL);
+  const cols = Math.ceil(containerW / cellSize);
+  const rows = Math.ceil(containerH / cellSize);
   const total = cols * rows;
   const activeCount = Math.floor(total * 0.1);
 
   // Size the grid element to exactly cols×rows cells
-  el.style.width = `${cols * CELL}px`;
-  el.style.height = `${rows * CELL}px`;
-  el.style.gridTemplateColumns = `repeat(${cols}, ${CELL}px)`;
-  el.style.gridTemplateRows = `repeat(${rows}, ${CELL}px)`;
+  el.style.width = `${cols * cellSize}px`;
+  el.style.height = `${rows * cellSize}px`;
+  el.style.gridTemplateColumns = `repeat(${cols}, ${cellSize}px)`;
+  el.style.gridTemplateRows = `repeat(${rows}, ${cellSize}px)`;
 
   const frag = document.createDocumentFragment();
   const squares: HTMLDivElement[] = [];
@@ -41,7 +47,7 @@ function buildGrid(el: HTMLDivElement, containerW: number, containerH: number) {
   for (let i = 0; i < total; i++) {
     const sq = document.createElement("div");
     sq.style.cssText =
-      `width:${CELL}px;height:${CELL}px;` +
+      `width:${cellSize}px;height:${cellSize}px;` +
       `border:1px solid rgba(241,73,60,0.8);` +
       `box-sizing:border-box;opacity:0.07;`;
     frag.appendChild(sq);
@@ -74,7 +80,16 @@ function GridBackground({ className = "" }: { className?: string }) {
 
     const ro = new ResizeObserver((entries) => {
       const { width, height } = entries[0].contentRect;
-      buildGrid(grid, width, height);
+
+      // Determine cell size based on width
+      let cellSize = DEFAULT_CELL;
+      if (width < 640) {
+        cellSize = 45; // Mobile
+      } else if (width < 1024) {
+        cellSize = 65; // Tablet
+      }
+
+      buildGrid(grid, width, height, cellSize);
     });
 
     ro.observe(wrapper);
@@ -107,12 +122,12 @@ export default function HeroSection() {
   ];
 
   return (
-    <div className="mxl:h-[calc(100vh-80px)] h-auto">
+    <div className="mxl:h-[calc(100vh-80px)] mt-[80px] h-auto w-full">
       <section className="relative w-full h-[calc(100vh-80px)] mxl:h-[82%] overflow-hidden bg-background">
         <GridBackground className="absolute inset-0 z-0" />
         <FloatingSkills />
 
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center max-w-6xl mx-auto space-y-2 ">
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center md:max-w-6xl mx-auto space-y-2 ">
           <h1 className="font-poppins text-4xl z-10 md:text-6xl 2xl:text-7xl font-medium leading-tight text-primary">
             WEB AND MOBILE
             <br className="hidden sm:block" /> APP DEVELOPMENT

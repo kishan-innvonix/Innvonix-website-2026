@@ -298,16 +298,23 @@ export default function HomeClient() {
   };
 
   return (
-    <>
+    <div className="w-full">
       <HeroSection />
       <section className="my-10">
-        <Container>
-          <h1 className="font-poppins text-4xl xl:text-6xl mxl:text-7xl font-semibold flex justify-start items-center gap-10 mb-10">
+        <Container className="flex flex-col gap-5 max-sm:items-center">
+          <h1 className="font-poppins text-4xl xl:text-6xl mxl:text-7xl font-semibold flex flex-col sm:flex-row justify-start items-center lg:gap-10 gap-5 md:mb-10">
             <span>WE INNOVATE </span>
             <Image src="/images/star.png" alt="star" width={32} height={32} />
             <span> WE LISTEN</span>
           </h1>
-          <h1 className="font-poppins text-4xl xl:text-6xl mxl:text-7xl font-semibold flex justify-end items-center gap-10">
+          <Image
+            src="/images/star.png"
+            alt="star"
+            width={32}
+            height={32}
+            className="md:hidden"
+          />
+          <h1 className="font-poppins text-4xl xl:text-6xl mxl:text-7xl font-semibold flex flex-col sm:flex-row justify-end items-center lg:gap-10 gap-5">
             <span>WE CARE</span>{" "}
             <Image src="/images/star.png" alt="star" width={32} height={32} />{" "}
             <span>WE DELIVER</span>
@@ -324,7 +331,7 @@ export default function HomeClient() {
             alt="about"
             width={500}
             height={500}
-            className="xl:w-[425px] mxl:w-[500px]"
+            className="w-[350px] xl:w-[425px] mxl:w-[500px]"
           />
         </div>
         {/* right about */}
@@ -355,10 +362,10 @@ export default function HomeClient() {
             <span className="text-primary ">Design. Build. Excel.</span> Taking
             your business to the next level!
           </h3>
-          <div className="h-100 2xl:h-110 mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="  md:h-100 2xl:h-110 mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {["Discovery", "Strategy", "Design", "Build"].map((item, index) => (
               <div
-                className={`flex flex-col justify-between p-4 h-[90%] border border-card-border dark:bg-card-bg ${
+                className={`flex flex-col justify-between p-4 h-85 md:h-[90%] border border-card-border dark:bg-card-bg ${
                   index % 2 === 1 ? "mt-8" : ""
                 }`}
               >
@@ -399,7 +406,7 @@ export default function HomeClient() {
             OUR SERVICES
           </h1>
           {/* Left side the list of services lik frontend backend etc and on right side the detail about it, in right side on top description and on bottom list of skills like html, css, js etc and on toggle to left side it change right side content accordingly */}
-          <div className="flex flex-col lg:flex-row w-full mt-10 min-h-fit lg:min-h-[600px] 2xl:h-[800px] border lg:border-0 border-card-border overflow-hidden rounded-3xl">
+          <div className="flex flex-col lg:flex-row w-full mt-10 min-h-fit lg:min-h-[600px] 2xl:h-[800px] border lg:border-0 border-card-border overflow-hidden ">
             {/* Left side list / Accordion on mobile */}
             <div className="w-full lg:w-[40%] bg-background lg:my-8 lg:border-r border-card-border overflow-y-auto">
               <ul className="flex flex-col h-full">
@@ -854,6 +861,6 @@ export default function HomeClient() {
           </div>
         </Container>
       </section>
-    </>
+    </div>
   );
 }
