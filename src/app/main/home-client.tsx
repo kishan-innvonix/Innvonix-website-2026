@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState, useRef } from "react";
+import { Fragment, useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import FloatingSkills from "@/components/floating-skills";
@@ -18,13 +18,7 @@ import {
   GraduationCap,
   Shield,
 } from "lucide-react";
-
-const stats = [
-  { value: "300+", label: "PROJECTS" },
-  { value: "800+", label: "CLIENTS" },
-  { value: "100+", label: "EXPERTS" },
-  { value: "250+", label: "HOURS" },
-];
+import HeroSection from "@/components/hero-section";
 
 const projectStats = [
   { value: "240+", label: "PROJECTS COMPLETED" },
@@ -256,6 +250,26 @@ const services = [
 export default function HomeClient() {
   const [selectedService, setSelectedService] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const checkScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      // Using a 5px tolerance to handle sub-pixel rendering and rounding
+      setCanScrollLeft(scrollLeft > 5);
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5);
+    }
+  };
+
+  useEffect(() => {
+    // Initial check
+    checkScroll();
+
+    // Resize listener to re-evaluate when window size changes
+    window.addEventListener("resize", checkScroll);
+    return () => window.removeEventListener("resize", checkScroll);
+  }, []);
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
@@ -276,61 +290,7 @@ export default function HomeClient() {
 
   return (
     <>
-      <div className="mxl:h-[calc(100vh-80px)] h-auto">
-        <section className="relative w-full h-[calc(100vh-80px)] mxl:h-[82%] overflow-hidden">
-          <FloatingSkills />
-          <div className="bg-[url('/images/hero_bg.svg')] dark:bg-[url('/images/temp.svg')] bg-cover bg-no-repeat h-full">
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center max-w-6xl mx-auto space-y-2 ">
-              <h1 className="font-poppins text-4xl z-10 md:text-6xl 2xl:text-7xl font-medium leading-tight text-primary">
-                WEB AND MOBILE
-                <br className="hidden sm:block" /> APP DEVELOPMENT
-              </h1>
-
-              <p className="text-lg md:text-xl 2xl:text-2xl z-10 text-foreground font-medium font-manrope max-w-xl leading-relaxed mb-6 2xl:mb-10">
-                Your Go-To-Partner for Website And Mobile App Development
-                Projects!
-              </p>
-              <p className="text-sm md:text-base 2xl:text-lg z-10 text-foreground font-medium font-manrope max-w-xl leading-relaxed">
-                We are bringing ideas to life. Our expert web and mobile team
-                can develop impeccable solutions. We build e-commerce portals,
-                custom web and mobile applications with robust user-experience
-                matching your deadlines.
-              </p>
-              <div className="flex z-10 flex-col sm:flex-row items-center gap-5 pt-6 2xl:pt-10 font-poppins">
-                <Button
-                  size="lg"
-                  className="h-14 px-8 text-sm md:text-base  font-semibold"
-                >
-                  GET A QUOTE
-                </Button>
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="h-14 px-8 text-sm md:text-base font-semibold bg-foreground text-background"
-                >
-                  OUR SOLUTION
-                </Button>
-              </div>
-            </div>
-          </div>{" "}
-        </section>
-        <div className="flex items-center text-xl md:text-4xl justify-evenly w-full font-poppins h-35 mxl:h-[18%]  font-semibold border-y border-primary">
-          {stats.map((stat, index) => (
-            <Fragment key={index}>
-              <div className="text-primary text-center leading-none">
-                {stat.value} <br />{" "}
-                <span className="text-foreground text-sm md:text-lg font-medium">
-                  {stat.label}
-                </span>
-              </div>
-              {index < stats.length - 1 && (
-                <div className="h-14 w-px bg-divider" />
-              )}
-            </Fragment>
-          ))}
-        </div>
-      </div>
-
+      <HeroSection />
       <section className="my-10">
         <Container>
           <h1 className="font-poppins text-4xl xl:text-6xl mxl:text-7xl font-semibold flex justify-start items-center gap-10 mb-10">
@@ -582,6 +542,7 @@ export default function HomeClient() {
         <div
           ref={scrollRef}
           className="flex overflow-x-auto snap-x snap-mandatory gap-10 mt-20 scrollbar-hide"
+          onScroll={checkScroll}
         >
           {showcaseProjects.map((project, index) => (
             <div
@@ -638,6 +599,7 @@ export default function HomeClient() {
             className="py-7"
             variant="ghost"
             onClick={() => scroll("left")}
+            disabled={!canScrollLeft}
           >
             <ChevronLeft className="size-10" />
           </Button>
@@ -645,6 +607,7 @@ export default function HomeClient() {
             className="py-7"
             variant="ghost"
             onClick={() => scroll("right")}
+            disabled={!canScrollRight}
           >
             <ChevronRight className="size-10" />
           </Button>
