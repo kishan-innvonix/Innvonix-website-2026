@@ -167,7 +167,7 @@ export default function Footer() {
                   <input
                     type="tel"
                     placeholder="Contact Number"
-                    className="grow bg-[#0a0a0a]  px-4 py-3 outline-none transition-colors text-white"
+                    className="grow bg-footer-bg  px-4 py-3 outline-none transition-colors text-white"
                   />
                 </div>
                 <div>
@@ -189,7 +189,7 @@ export default function Footer() {
                   <textarea
                     placeholder="Message"
                     rows={1}
-                    className="w-full bg-[#0a0a0a]  px-4 py-3 outline-none transition-colors text-white resize-none"
+                    className="w-full bg-footer-bg  px-4 py-3 outline-none transition-colors text-white resize-none"
                   />
                 </div>
                 <Button className="w-48 h-12 bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wide">

@@ -276,57 +276,59 @@ export default function HomeClient() {
 
   return (
     <>
-      <section className="relative w-full  overflow-hidden">
-        <FloatingSkills />
-        <div className="bg-[url('/images/hero_bg.svg')] dark:bg-[url('/images/temp.svg')] bg-size-[100%_100%] bg-no-repeat h-full">
-          <div className="relative z-10 flex flex-col items-center  text-center max-w-6xl mx-auto space-y-2 py-16 2xl:py-24">
-            <h1 className="font-poppins text-4xl z-10 md:text-6xl 2xl:text-7xl font-medium leading-tight text-primary">
-              WEB AND MOBILE
-              <br className="hidden sm:block" /> APP DEVELOPMENT
-            </h1>
+      <div className="mxl:h-[calc(100vh-80px)] h-auto">
+        <section className="relative w-full h-[calc(100vh-80px)] mxl:h-[82%] overflow-hidden">
+          <FloatingSkills />
+          <div className="bg-[url('/images/hero_bg.svg')] dark:bg-[url('/images/temp.svg')] bg-cover bg-no-repeat h-full">
+            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center max-w-6xl mx-auto space-y-2 ">
+              <h1 className="font-poppins text-4xl z-10 md:text-6xl 2xl:text-7xl font-medium leading-tight text-primary">
+                WEB AND MOBILE
+                <br className="hidden sm:block" /> APP DEVELOPMENT
+              </h1>
 
-            <p className="text-lg md:text-xl 2xl:text-2xl z-10 text-foreground font-medium font-manrope max-w-xl leading-relaxed mb-6 2xl:mb-10">
-              Your Go-To-Partner for Website And Mobile App Development
-              Projects!
-            </p>
-            <p className="text-sm md:text-base 2xl:text-lg z-10 text-foreground font-medium font-manrope max-w-xl leading-relaxed">
-              We are bringing ideas to life. Our expert web and mobile team can
-              develop impeccable solutions. We build e-commerce portals, custom
-              web and mobile applications with robust user-experience matching
-              your deadlines.
-            </p>
-            <div className="flex z-10 flex-col sm:flex-row items-center gap-5 pt-6 2xl:pt-10 font-poppins">
-              <Button
-                size="lg"
-                className="h-14 px-8 text-sm md:text-base  font-semibold"
-              >
-                GET A QUOTE
-              </Button>
-              <Button
-                size="lg"
-                variant="ghost"
-                className="h-14 px-8 text-sm md:text-base font-semibold bg-foreground text-background"
-              >
-                OUR SOLUTION
-              </Button>
+              <p className="text-lg md:text-xl 2xl:text-2xl z-10 text-foreground font-medium font-manrope max-w-xl leading-relaxed mb-6 2xl:mb-10">
+                Your Go-To-Partner for Website And Mobile App Development
+                Projects!
+              </p>
+              <p className="text-sm md:text-base 2xl:text-lg z-10 text-foreground font-medium font-manrope max-w-xl leading-relaxed">
+                We are bringing ideas to life. Our expert web and mobile team
+                can develop impeccable solutions. We build e-commerce portals,
+                custom web and mobile applications with robust user-experience
+                matching your deadlines.
+              </p>
+              <div className="flex z-10 flex-col sm:flex-row items-center gap-5 pt-6 2xl:pt-10 font-poppins">
+                <Button
+                  size="lg"
+                  className="h-14 px-8 text-sm md:text-base  font-semibold"
+                >
+                  GET A QUOTE
+                </Button>
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="h-14 px-8 text-sm md:text-base font-semibold bg-foreground text-background"
+                >
+                  OUR SOLUTION
+                </Button>
+              </div>
             </div>
-          </div>
-        </div>{" "}
-      </section>
-      <div className="flex items-center text-xl md:text-4xl justify-evenly w-full font-poppins font-semibold py-10 border-y border-primary">
-        {stats.map((stat, index) => (
-          <Fragment key={index}>
-            <div className="text-primary text-center leading-none">
-              {stat.value} <br />{" "}
-              <span className="text-foreground text-sm md:text-lg font-medium">
-                {stat.label}
-              </span>
-            </div>
-            {index < stats.length - 1 && (
-              <div className="h-14 w-px bg-divider" />
-            )}
-          </Fragment>
-        ))}
+          </div>{" "}
+        </section>
+        <div className="flex items-center text-xl md:text-4xl justify-evenly w-full font-poppins h-35 mxl:h-[18%]  font-semibold border-y border-primary">
+          {stats.map((stat, index) => (
+            <Fragment key={index}>
+              <div className="text-primary text-center leading-none">
+                {stat.value} <br />{" "}
+                <span className="text-foreground text-sm md:text-lg font-medium">
+                  {stat.label}
+                </span>
+              </div>
+              {index < stats.length - 1 && (
+                <div className="h-14 w-px bg-divider" />
+              )}
+            </Fragment>
+          ))}
+        </div>
       </div>
 
       <section className="my-10">
@@ -346,18 +348,25 @@ export default function HomeClient() {
 
       <section className="flex gap-20 bg-primary text-white">
         {/* left Image */}
+        {/* change image size based on xl and mxl */}
         <div className="w-fit">
-          <Image src="/images/we.png" alt="about" width={500} height={500} />
+          <Image
+            src="/images/we.png"
+            alt="about"
+            width={500}
+            height={500}
+            className="xl:w-[425px] mxl:w-[500px]"
+          />
         </div>
         {/* right about */}
         <div className="flex flex-col gap-5 justify-center w-1/2">
-          <h1 className="font-poppins text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-semibold mb-10">
+          <h1 className="font-poppins text-3xl md:text-4xl xl:text-5xl mxl:text-6xl font-semibold mb-5 mxl:mb-10">
             WE ARE INNVONIX
           </h1>
-          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold">
+          <h2 className="text-xl md:text-2xl xl:text-3xl mxl:text-4xl font-medium mxl:font-bold">
             The name “Innvonix” stands for <br /> invention & innovation.
           </h2>
-          <p className="font-medium text-lg  2xl:text-xl">
+          <p className="font-medium text-lg 2xl:text-xl">
             Innvonix Tech Solutions is a leading website design and development
             company in India. Established in 2014, we offer a wide range of
             software development services across multiple industries. With the
@@ -428,7 +437,7 @@ export default function HomeClient() {
                 {services.map((service, index) => (
                   <Fragment key={index}>
                     <li
-                      className={`group cursor-pointer flex items-center gap-6 px-10 py-4 transition-all duration-300 relative ${
+                      className={`group cursor-pointer flex items-center gap-4 mxl:gap-6 px-5 mxl:px-10 py-3 mxl:py-4 transition-all duration-300 relative ${
                         selectedService === index
                           ? "bg-primary text-white"
                           : "hover:bg-primary/5 text-foreground"
@@ -436,7 +445,7 @@ export default function HomeClient() {
                       onClick={() => setSelectedService(index)}
                     >
                       <div
-                        className={`size-10 rounded-full border flex items-center justify-center text-sm font-medium transition-colors ${
+                        className={`size-8 mxl:size-10 rounded-full border flex items-center justify-center text-sm font-medium transition-colors ${
                           selectedService === index
                             ? "border-white text-white"
                             : "text-black bg-white group-hover:text-white group-hover:bg-primary"
@@ -444,7 +453,7 @@ export default function HomeClient() {
                       >
                         {index + 1}
                       </div>
-                      <span className="text-base md:text-lg font-medium uppercase tracking-wide">
+                      <span className="text-base mxl:text-lg font-medium uppercase tracking-wide">
                         {service.title}
                       </span>
                     </li>
@@ -500,7 +509,7 @@ export default function HomeClient() {
         </Container>
       </section>
 
-      <section className="my-20">
+      <section className="my-10 mxl:my-20">
         <Container>
           <h1 className="text-3xl md:text-4xl xl:text-5xl mb-10 font-extrabold text-primary uppercase tracking-tight">
             OUR PROJECTS
@@ -572,7 +581,7 @@ export default function HomeClient() {
         {/* Horizontal Scrollable Gallery */}
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto snap-x snap-mandatory gap-10 pt-10 pb-5 scrollbar-hide"
+          className="flex overflow-x-auto snap-x snap-mandatory gap-10 mt-20 scrollbar-hide"
         >
           {showcaseProjects.map((project, index) => (
             <div
@@ -582,14 +591,14 @@ export default function HomeClient() {
               {/* Details side */}
               <div className="w-full lg:w-3/5 p-8 md:p-16 flex flex-col justify-between items-start gap-10">
                 <div className="space-y-6">
-                  <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold leading-tight">
+                  <h1 className="text-3xl md:text-4xl mxl:text-5xl font-bold leading-tight">
                     {project.title}
                   </h1>
-                  <p className="text-lg md:text-xl text-muted-foreground font-medium max-w-xl leading-relaxed">
+                  <p className="text-lg mxl:text-xl text-muted-foreground font-medium max-w-xl leading-relaxed">
                     {project.description}
                   </p>
                 </div>
-                <Button className="text-md h-12 font-bold flex items-center gap-3">
+                <Button className="text-md h-12 font-semibold mxl:font-bold flex items-center gap-3">
                   {project.buttonLabel}
                   <svg
                     width="20"
@@ -624,7 +633,7 @@ export default function HomeClient() {
           ))}
         </div>
         {/* paggination button onClick scroll to next and prev project*/}
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-10">
           <Button
             className="py-7"
             variant="ghost"
@@ -642,9 +651,9 @@ export default function HomeClient() {
         </div>
       </section>
 
-      <section className="py-20 bg-section-soft dark:bg-card/20">
+      <section className="py-20 bg-section-soft dark:bg-background">
         <Container>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl mb-16 font-extrabold text-primary uppercase tracking-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl mb-10 font-extrabold text-primary uppercase tracking-tight">
             WHY INNVONIX?
           </h1>
 
@@ -654,8 +663,8 @@ export default function HomeClient() {
                 key={index}
                 className="bg-white dark:bg-card border border-border  overflow-hidden flex flex-col h-full shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="p-8 md:p-10 flex-grow">
-                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6 leading-tight">
+                <div className="p-8 mxl:p-10 grow">
+                  <h2 className="text-2xl md:text-3xl font-semibold mxl:font-bold text-foreground mb-6 leading-tight">
                     {item.title}
                   </h2>
                   <p className="text-base md:text-lg text-muted-foreground font-medium leading-relaxed">
