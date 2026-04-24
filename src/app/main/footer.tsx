@@ -84,10 +84,10 @@ export default function Footer() {
           />
         </div>
         {/* our company and hire developer in one line by left and right  */}
-        <div className="grid grid-cols-1 md:grid-cols-5  mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-10">
           {/* Links Columns */}
           <div className="md:col-span-2">
-            <h3 className="text-primary text-xl font-bold mb-8 uppercase tracking-wider">
+            <h3 className="text-primary text-xl font-bold md:mb-8 mb-4 uppercase tracking-wider">
               Our Company
             </h3>
             <div className="grid grid-cols-2 gap-y-2 gap-x-0">
@@ -104,7 +104,7 @@ export default function Footer() {
           </div>
           <div />
           <div className="md:col-span-2">
-            <h3 className="text-primary text-xl font-bold mb-8 uppercase tracking-wider">
+            <h3 className="text-primary text-xl font-bold md:mb-8 mb-4 uppercase tracking-wider">
               Hire Developers
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-8">

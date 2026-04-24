@@ -101,47 +101,56 @@ const industriesWeServe = [
   {
     label: "Healthcare",
     icon: Stethoscope,
-    pos: { top: "20%", left: "35%" },
+    ring: "inner",
+    angle: 0,
   },
   {
     label: "E-Commerce & Retail",
     icon: ShoppingBag,
-    pos: { top: "22%", left: "60%" },
+    ring: "inner",
+    angle: 120,
   },
   {
     label: "Event Management",
     icon: Calendar,
-    pos: { top: "38%", left: "30%" },
+    ring: "inner",
+    angle: 240,
   },
   {
     label: "Banking & Finance",
     icon: Building2,
-    pos: { top: "45%", left: "68%" },
+    ring: "outer",
+    angle: 60,
   },
   {
     label: "Tours & Travel",
     icon: Plane,
-    pos: { top: "54%", left: "34%" },
+    ring: "outer",
+    angle: 180,
   },
   {
     label: "Hospitality",
     icon: Hotel,
-    pos: { top: "67%", left: "75%" },
+    ring: "outer",
+    angle: 300,
   },
   {
     label: "Foods & Restaurants",
     icon: Utensils,
-    pos: { top: "70%", left: "25%" },
+    ring: "outer",
+    angle: 0,
   },
   {
     label: "Education",
     icon: GraduationCap,
-    pos: { top: "78%", left: "45%" },
+    ring: "outer",
+    angle: 120,
   },
   {
     label: "Cyber Security",
     icon: Shield,
-    pos: { top: "80%", left: "63%" },
+    ring: "outer",
+    angle: 240,
   },
 ];
 
@@ -306,7 +315,7 @@ export default function HomeClient() {
         </Container>
       </section>
 
-      <section className="flex gap-20 bg-primary text-white">
+      <section className="flex md:flex-row flex-col md:gap-20 gap-10 bg-primary text-white">
         {/* left Image */}
         {/* change image size based on xl and mxl */}
         <div className="w-fit">
@@ -319,7 +328,7 @@ export default function HomeClient() {
           />
         </div>
         {/* right about */}
-        <div className="flex flex-col gap-5 justify-center w-1/2">
+        <div className="flex flex-col gap-5 justify-center w-full md:w-1/2 px-5 pb-5 md:px-0 md:pb-0">
           <h1 className="font-poppins text-3xl md:text-4xl xl:text-5xl mxl:text-6xl font-semibold mb-5 mxl:mb-10">
             WE ARE INNVONIX
           </h1>
@@ -346,7 +355,7 @@ export default function HomeClient() {
             <span className="text-primary ">Design. Build. Excel.</span> Taking
             your business to the next level!
           </h3>
-          <div className="flex gap-6 h-100 2xl:h-110 mt-10">
+          <div className="h-100 2xl:h-110 mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {["Discovery", "Strategy", "Design", "Build"].map((item, index) => (
               <div
                 className={`flex flex-col justify-between p-4 h-[90%] border border-card-border dark:bg-card-bg ${
@@ -390,9 +399,9 @@ export default function HomeClient() {
             OUR SERVICES
           </h1>
           {/* Left side the list of services lik frontend backend etc and on right side the detail about it, in right side on top description and on bottom list of skills like html, css, js etc and on toggle to left side it change right side content accordingly */}
-          <div className="flex w-full mt-10 min-h-[600px] overflow-hidden 2xl:h-[800px]">
-            {/* Left side list */}
-            <div className="w-[40%] bg-background my-8">
+          <div className="flex flex-col lg:flex-row w-full mt-10 min-h-fit lg:min-h-[600px] 2xl:h-[800px] border lg:border-0 border-card-border overflow-hidden rounded-3xl">
+            {/* Left side list / Accordion on mobile */}
+            <div className="w-full lg:w-[40%] bg-background lg:my-8 lg:border-r border-card-border overflow-y-auto">
               <ul className="flex flex-col h-full">
                 {services.map((service, index) => (
                   <Fragment key={index}>
@@ -416,27 +425,71 @@ export default function HomeClient() {
                       <span className="text-base mxl:text-lg font-medium uppercase tracking-wide">
                         {service.title}
                       </span>
+                      {/* Accordion Icon for Mobile */}
+                      <div
+                        className={`lg:hidden transition-transform duration-300 ${selectedService === index ? "rotate-180" : ""}`}
+                      >
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M6 9L12 15L18 9"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
                     </li>
-                    {index < services.length - 1 &&
-                      selectedService !== index &&
-                      selectedService !== index + 1 && (
-                        <div className="h-px bg-white" />
-                      )}
+
+                    {/* Mobile Detail (Accordion Content) */}
+                    {selectedService === index && (
+                      <div className="lg:hidden w-full bg-foreground dark:bg-primary p-6 text-white overflow-hidden animate-in fade-in slide-in-from-top-4 duration-300">
+                        <div className="flex gap-4">
+                          <div className="w-1 bg-white shrink-0" />
+                          <div className="space-y-4">
+                            <h1 className="text-xl font-bold uppercase tracking-tight">
+                              {service.title}
+                            </h1>
+                            <p className="text-sm leading-relaxed opacity-90">
+                              {service.description}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="mt-8 flex flex-wrap gap-2">
+                          {service.skills.map((skill, sIndex) => (
+                            <div
+                              key={sIndex}
+                              className="bg-white/10 backdrop-blur-sm border border-white/20 px-3 py-1.5 flex items-center gap-2"
+                            >
+                              <span className="text-white font-bold text-[10px] uppercase tracking-wider">
+                                {skill.name}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </Fragment>
                 ))}
               </ul>
             </div>
 
-            {/* Right side detail */}
-            <div className="w-[60%] relative flex flex-col justify-between bg-foreground dark:bg-primary p-8 text-white bg-[url('/images/services_bg.png')] dark:bg-[url('/images/services_bg_dark.png')] bg-bottom-right bg-no-repeat overflow-hidden">
-              <div className="relative z-10 flex gap-5">
-                <div className="w-1 bg-white  shrink-0" />
-                <div className="space-y-8">
-                  <h1 className="text-2xl md:text-3xl lg:text-4xl min-[1440px]:text-[40px] min-[1920px]:text-[48px] font-semibold leading-tight leading-none">
-                    {services[selectedService].title}
+            {/* Right side detail (Visible only on Desktop) */}
+            <div className="hidden lg:flex w-[60%] relative flex-col justify-between bg-foreground dark:bg-primary lg:p-16 text-white bg-[url('/images/services_bg.png')] bg-bottom-right bg-no-repeat overflow-hidden">
+              <div className="relative z-10 flex gap-8">
+                <div className="w-1 bg-white shrink-0" />
+                <div className="space-y-10">
+                  <h1 className="text-4xl min-[1440px]:text-[40px] min-[1920px]:text-[48px] font-bold leading-tight uppercase tracking-tight">
+                    {services[selectedService]?.title}
                   </h1>
-                  <p className="text-base md:text-lg min-[1440px]:text-[18px] min-[1920px]:text-[20px] leading-relaxed font-manrope  opacity-90 font-medium">
-                    {services[selectedService].description}
+                  <p className="text-lg min-[1440px]:text-[18px] min-[1920px]:text-[20px] leading-relaxed font-manrope opacity-90 font-medium">
+                    {services[selectedService]?.description}
                   </p>
                 </div>
               </div>
@@ -700,60 +753,99 @@ export default function HomeClient() {
           </div>
         </Container>
       </section>
-      <section className="py-20 relative overflow-hidden bg-white dark:bg-background">
+      <section className="py-5 md:py-20 relative overflow-hidden bg-white dark:bg-background">
         <Container>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl mb-10 font-extrabold text-primary text-center uppercase tracking-tight relative z-10">
-            INDUSTRIES WE SERVE
-          </h1>
+          <div className="text-center md:mb-16 relative z-10">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary uppercase tracking-tight">
+              INDUSTRIES WE SERVE
+            </h1>
+            <div className="h-1.5 w-24 bg-primary mx-auto mt-4 rounded-full opacity-20" />
+          </div>
 
-          <div className="relative h-[400px] md:h-[800px] w-full flex items-center justify-center">
-            {/* Background Map */}
-            <Image
-              src="/images/bg_map.svg"
-              alt="map"
-              fill
-              className="object-contain"
-            />
+          <div className="relative min-h-[600px] md:h-[800px] w-full flex items-center justify-center">
+            {/* Background Decoration (Always Centered Behind) */}
+            <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
+              {/* Background Map */}
+              <div className="absolute inset-0 z-0 opacity-15 dark:opacity-10">
+                <Image
+                  src="/images/bg_map.svg"
+                  alt="map"
+                  fill
+                  className="object-contain"
+                />
+              </div>
 
-            {/* Concentric Rings */}
-            <div className="absolute z-0 pointer-events-none w-[300px] h-[300px] md:w-[600px] md:h-[600px]">
-              <Image
-                src="/images/group.svg"
-                alt="rings"
-                fill
-                className="object-contain "
-              />
+              {/* Concentric Rings */}
+              <div className="absolute z-0 w-[400px] h-[400px] md:w-[700px] md:h-[700px] animate-pulse-slow">
+                <Image
+                  src="/images/rings.png"
+                  alt="rings"
+                  fill
+                  className="object-contain opacity-30 dark:opacity-20"
+                />
+              </div>
+
+              {/* Central Logo with Float Animation */}
+              <div className="relative z-0 size-32 md:size-56 animate-float drop-shadow-2xl">
+                <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full opacity-50" />
+                <Image
+                  src="/images/midde_logo.png"
+                  alt="logo"
+                  fill
+                  className="object-contain relative z-10 opacity-60 dark:opacity-40"
+                />
+              </div>
             </div>
 
-            {/* Floating Industry Labels (Desktop) */}
-            <div className="hidden md:block absolute inset-0 z-30">
+            {/* Desktop View (Floating Labels) */}
+            <div className="hidden sm:flex absolute inset-0 z-30 items-center justify-center pointer-events-none">
+              <div className="relative aspect-square h-full max-w-full animate-spin-slow pointer-events-auto">
+                {industriesWeServe.slice(0, 9).map((industry, index) => {
+                  const radius = industry.ring === "inner" ? 22 : 44;
+                  const angleOffset = industry.ring === "outer" ? 30 : 0;
+                  const angleRad =
+                    ((industry.angle + angleOffset) * Math.PI) / 180;
+                  const top = 50 + radius * Math.sin(angleRad);
+                  const left = 50 + radius * Math.cos(angleRad);
+
+                  return (
+                    <div
+                      key={index}
+                      className="absolute transform -translate-x-1/2 -translate-y-1/2"
+                      style={{
+                        top: `${top}%`,
+                        left: `${left}%`,
+                      }}
+                    >
+                      <div className="bg-white/90 dark:bg-card/90 backdrop-blur-md border border-primary/20 dark:border-primary/10 px-4 md:px-5 py-2.5 md:py-3.5 rounded-xl flex items-center gap-3 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:border-primary transition-all duration-300 cursor-default group animate-spin-slow-reverse whitespace-nowrap">
+                        <div className="text-primary transition-transform duration-300 group-hover:scale-110">
+                          <industry.icon
+                            className="size-5 md:size-6"
+                            strokeWidth={2.5}
+                          />
+                        </div>
+                        <span className="text-sm md:text-base font-bold text-foreground">
+                          {industry.label}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Mobile View (Grid) - Overlaid on background */}
+            <div className="sm:hidden relative z-40 w-full grid grid-cols-2 gap-3 px-4">
               {industriesWeServe.map((industry, index) => (
                 <div
                   key={index}
-                  className="absolute transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-card border border-border px-4 py-3 flex items-center gap-3 whitespace-nowrap hover:shadow-md transition-shadow cursor-default"
-                  style={{ top: industry.pos.top, left: industry.pos.left }}
+                  className="bg-white/90 dark:bg-card/95 backdrop-blur-sm border border-primary/10 px-3 py-4 rounded-2xl shadow-lg flex items-center gap-3 active:scale-95 transition-transform animate-fade-in-up"
+                  style={{ animationDelay: `${index * 0.05}s` }}
                 >
-                  <div className="text-primary">
+                  <div className="text-primary bg-primary/5 p-2 rounded-xl">
                     <industry.icon size={20} strokeWidth={2.5} />
                   </div>
-                  <span className="text-sm font-bold text-foreground">
-                    {industry.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Mobile View (Grid) */}
-            <div className="md:hidden absolute -bottom-20 inset-x-0 grid grid-cols-2 gap-4 px-4">
-              {industriesWeServe.map((industry, index) => (
-                <div
-                  key={index}
-                  className="bg-white dark:bg-card border border-border px-3 py-2 rounded-lg shadow-sm flex items-center gap-2"
-                >
-                  <div className="text-primary">
-                    <industry.icon size={16} strokeWidth={2.5} />
-                  </div>
-                  <span className="text-xs font-bold text-foreground">
+                  <span className="text-[13px] font-bold text-foreground leading-tight tracking-tight">
                     {industry.label}
                   </span>
                 </div>
