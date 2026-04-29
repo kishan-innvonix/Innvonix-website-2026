@@ -138,7 +138,7 @@ export default function Footer() {
 
           <div className="bg-footer-card/80 overflow-hidden grid grid-cols-1 md:grid-cols-2">
             {/* Form Side */}
-            <div className="p-8 md:p-12">
+            <div className="p-4 md:p-12">
               <form className="space-y-6">
                 <div>
                   <input
@@ -155,19 +155,17 @@ export default function Footer() {
                   />
                 </div>
                 <div className="flex gap-4">
-                  <div className="w-20 shrink-0">
-                    <div className="relative">
-                      <select className="w-full bg-footer-bg  px-3 py-3 appearance-none outline-none text-white">
-                        <option>+01</option>
-                        <option>+91</option>
-                      </select>
-                      <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 size-4 opacity-50" />
-                    </div>
+                  <div className="flex gap-2 bg-footer-bg items-center px-3 py-3">
+                    <select className="appearance-none outline-none text-white">
+                      <option>+01</option>
+                      <option>+91</option>
+                    </select>
+                    <ChevronDown className="size-4 opacity-50" />
                   </div>
                   <input
                     type="tel"
                     placeholder="Contact Number"
-                    className="grow bg-footer-bg  px-4 py-3 outline-none transition-colors text-white"
+                    className="grow bg-footer-bg px-4 py-3 w-full outline-none transition-colors text-white"
                   />
                 </div>
                 <div>

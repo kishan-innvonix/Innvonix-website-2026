@@ -299,13 +299,22 @@ export default function HomeClient() {
 
   return (
     <div className="w-full">
+      {/* hero section */}
       <HeroSection />
+
+      {/* we innovate we listen */}
       <section className="my-10">
         <Container className="flex flex-col gap-5 max-sm:items-center">
-          <h1 className="font-poppins text-4xl xl:text-6xl mxl:text-7xl font-semibold flex flex-col sm:flex-row justify-start items-center lg:gap-10 gap-5 md:mb-10">
-            <span>WE INNOVATE </span>
-            <Image src="/images/star.png" alt="star" width={32} height={32} />
-            <span> WE LISTEN</span>
+          <h1 className="font-poppins text-4xl xl:text-6xl mxl:text-7xl font-semibold w-full px-5 md:px-0 flex flex-col sm:flex-row md:justify-start md:items-center lg:gap-10 gap-5 md:mb-10">
+            <span className="w-full md:w-fit text-start">WE INNOVATE </span>
+            <Image
+              src="/images/star.png"
+              alt="star"
+              width={32}
+              height={32}
+              className="mx-auto md:mx-0"
+            />
+            <span className="w-full md:w-fit text-end"> WE LISTEN</span>
           </h1>
           <Image
             src="/images/star.png"
@@ -314,17 +323,23 @@ export default function HomeClient() {
             height={32}
             className="md:hidden"
           />
-          <h1 className="font-poppins text-4xl xl:text-6xl mxl:text-7xl font-semibold flex flex-col sm:flex-row justify-end items-center lg:gap-10 gap-5">
-            <span>WE CARE</span>{" "}
-            <Image src="/images/star.png" alt="star" width={32} height={32} />{" "}
-            <span>WE DELIVER</span>
+          <h1 className="font-poppins text-4xl xl:text-6xl mxl:text-7xl font-semibold w-full px-5 md:px-0 flex flex-col sm:flex-row md:justify-end md:items-center lg:gap-10 gap-5">
+            <span className="w-full md:w-fit text-start">WE CARE</span>{" "}
+            <Image
+              src="/images/star.png"
+              alt="star"
+              width={32}
+              height={32}
+              className="mx-auto md:mx-0"
+            />{" "}
+            <span className="w-full md:w-fit text-end">WE DELIVER</span>
           </h1>
         </Container>
       </section>
 
-      <section className="flex md:flex-row flex-col md:gap-20 gap-10 bg-primary text-white">
+      {/* about section */}
+      <section className="flex md:flex-row flex-col-reverse md:gap-20 gap-8 bg-primary text-white">
         {/* left Image */}
-        {/* change image size based on xl and mxl */}
         <div className="w-fit">
           <Image
             src="/images/we.png"
@@ -335,7 +350,7 @@ export default function HomeClient() {
           />
         </div>
         {/* right about */}
-        <div className="flex flex-col gap-5 justify-center w-full md:w-1/2 px-5 pb-5 md:px-0 md:pb-0">
+        <div className="flex flex-col gap-5 justify-center w-full md:w-1/2 px-5 pt-8 md:px-0 md:pb-0">
           <h1 className="font-poppins text-3xl md:text-4xl xl:text-5xl mxl:text-6xl font-semibold mb-5 mxl:mb-10">
             WE ARE INNVONIX
           </h1>
@@ -353,6 +368,7 @@ export default function HomeClient() {
         </div>
       </section>
 
+      {/* our process */}
       <section className="my-20">
         <Container>
           <h1 className="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-primary mb-5">
@@ -366,7 +382,7 @@ export default function HomeClient() {
             {["Discovery", "Strategy", "Design", "Build"].map((item, index) => (
               <div
                 className={`flex flex-col justify-between p-4 h-85 md:h-[90%] border border-card-border dark:bg-card-bg ${
-                  index % 2 === 1 ? "mt-8" : ""
+                  index % 2 === 1 ? "md:mt-8" : ""
                 }`}
               >
                 <Image
@@ -400,6 +416,7 @@ export default function HomeClient() {
         </Container>
       </section>
 
+      {/*  Our Services */}
       <section className="my-20">
         <Container>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary">
@@ -529,6 +546,7 @@ export default function HomeClient() {
         </Container>
       </section>
 
+      {/* Our Projects */}
       <section className="my-10 mxl:my-20">
         <Container>
           <h1 className="text-3xl md:text-4xl xl:text-5xl mb-10 font-extrabold text-primary uppercase tracking-tight">
@@ -537,14 +555,14 @@ export default function HomeClient() {
           <div className="flex flex-col md:flex-row w-full gap-10 md:gap-20">
             {/* Left side */}
             <div className="md:w-1/2 flex flex-col gap-8">
-              <h2 className="text-3xl md:text-4xl font-bold flex flex-col gap-2 leading-tight">
+              <h2 className="text-2xl md:text-4xl font-bold flex flex-col gap-2 leading-tight">
                 <span>WHAT YOU ASK IS</span>
                 <span>WHAT YOU GET!</span>
               </h2>
             </div>
 
             {/* Right side stats grid */}
-            <div className="md:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-16">
+            <div className="md:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10 md:gap-y-16">
               {projectStats.map((stat, index) => (
                 <div key={index} className="relative pt-6">
                   {/* Gradient Line */}
@@ -554,7 +572,7 @@ export default function HomeClient() {
                     <span className="text-sm font-extrabold text-foreground opacity-80 uppercase tracking-wider">
                       {stat.label}
                     </span>
-                    <span className="text-5xl md:text-6xl font-bold text-primary">
+                    <span className="text-4xl md:text-6xl font-bold text-primary">
                       {stat.value}
                     </span>
                   </div>
@@ -565,7 +583,7 @@ export default function HomeClient() {
           {/* Glimpse Header */}
           <div className="mt-10 mb-16 flex flex-col md:flex-row items-center md:items-end justify-between gap-10">
             <div className="max-w-md 2xl:max-w-xl relative">
-              <h1 className="text-3xl md:text-4xl lg:text-2xl 2xl:text-3xl font-medium font-poppins text-foreground">
+              <h1 className="text-2xl md:text-4xl lg:text-2xl 2xl:text-3xl font-medium font-poppins text-foreground">
                 Here Is A Glimpse Of Some Of Our Interesting Work In Web And
                 Mobile App Development.
               </h1>
@@ -639,7 +657,7 @@ export default function HomeClient() {
 
               {/* Image side */}
               <div
-                className={`w-full lg:w-2/5 min-h-[400px] bg-primary relative p-8 md:p-12 flex items-center justify-center`}
+                className={`w-full lg:w-2/5 min-h-[300px] md:min-h-[400px] bg-primary relative p-8 md:p-12 flex items-center justify-center`}
               >
                 <div className="relative w-full h-full">
                   <Image
@@ -674,6 +692,7 @@ export default function HomeClient() {
         </div>
       </section>
 
+      {/* why innvonix */}
       <section className="py-20 bg-section-soft dark:bg-background">
         <Container>
           <h1 className="text-3xl md:text-4xl lg:text-5xl mb-10 font-extrabold text-primary uppercase tracking-tight">
@@ -709,6 +728,7 @@ export default function HomeClient() {
         </Container>
       </section>
 
+      {/* engagement model */}
       <section className="py-20">
         <Container>
           <h1 className="text-3xl md:text-4xl lg:text-5xl mb-20 font-extrabold text-primary uppercase tracking-tight">
@@ -721,9 +741,12 @@ export default function HomeClient() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
               {engagementModels.map((model, index) => (
-                <div key={index} className="flex flex-col gap-8 relative px-4">
+                <div
+                  key={index}
+                  className="flex flex-col gap-8 relative sm:px-4"
+                >
                   {/* Decorative corner bracket */}
-                  <div className="absolute -top-4 -right-4 size-6">
+                  <div className="absolute -top-4 hidden md:block md:-right-4 size-6">
                     <Image
                       src="/images/corner.svg"
                       alt="corner"
@@ -760,6 +783,8 @@ export default function HomeClient() {
           </div>
         </Container>
       </section>
+
+      {/* industries we serve */}
       <section className="py-5 md:py-20 relative overflow-hidden bg-white dark:bg-background">
         <Container>
           <div className="text-center md:mb-16 relative z-10">
@@ -769,7 +794,7 @@ export default function HomeClient() {
             <div className="h-1.5 w-24 bg-primary mx-auto mt-4 rounded-full opacity-20" />
           </div>
 
-          <div className="relative min-h-[600px] md:h-[800px] w-full flex items-center justify-center">
+          <div className="relative min-h-[500px] md:h-[800px] w-full flex items-center justify-center">
             {/* Background Decoration (Always Centered Behind) */}
             <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
               {/* Background Map */}
@@ -783,7 +808,7 @@ export default function HomeClient() {
               </div>
 
               {/* Concentric Rings */}
-              <div className="absolute z-0 w-[400px] h-[400px] md:w-[700px] md:h-[700px] animate-pulse-slow">
+              <div className="absolute z-0 w-[300px] h-[300px] md:w-[700px] md:h-[700px] animate-pulse-slow">
                 <Image
                   src="/images/rings.png"
                   alt="rings"
@@ -792,8 +817,8 @@ export default function HomeClient() {
                 />
               </div>
 
-              {/* Central Logo with Float Animation */}
-              <div className="relative z-0 size-32 md:size-56 animate-float drop-shadow-2xl">
+              {/* Central Logo */}
+              <div className="relative z-0 size-32 md:size-56 drop-shadow-2xl">
                 <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full opacity-50" />
                 <Image
                   src="/images/midde_logo.png"
@@ -824,7 +849,7 @@ export default function HomeClient() {
                         left: `${left}%`,
                       }}
                     >
-                      <div className="bg-white/90 dark:bg-card/90 backdrop-blur-md border border-primary/20 dark:border-primary/10 px-4 md:px-5 py-2.5 md:py-3.5 rounded-xl flex items-center gap-3 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:border-primary transition-all duration-300 cursor-default group animate-spin-slow-reverse whitespace-nowrap">
+                      <div className="bg-white/90 dark:bg-card/90 backdrop-blur-md border border-primary/20 dark:border-primary/10 px-4 md:px-5 py-2.5 md:py-3.5 flex items-center gap-3 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:border-primary transition-all duration-300 cursor-default group animate-spin-slow-reverse whitespace-nowrap">
                         <div className="text-primary transition-transform duration-300 group-hover:scale-110">
                           <industry.icon
                             className="size-5 md:size-6"
@@ -846,11 +871,11 @@ export default function HomeClient() {
               {industriesWeServe.map((industry, index) => (
                 <div
                   key={index}
-                  className="bg-white/90 dark:bg-card/95 backdrop-blur-sm border border-primary/10 px-3 py-4 rounded-2xl shadow-lg flex items-center gap-3 active:scale-95 transition-transform animate-fade-in-up"
+                  className="bg-white/90 dark:bg-card/95 backdrop-blur-sm border border-primary/10 px-3 py-2 shadow-lg flex items-center gap-3 active:scale-95 transition-transform animate-fade-in-up"
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
                   <div className="text-primary bg-primary/5 p-2 rounded-xl">
-                    <industry.icon size={20} strokeWidth={2.5} />
+                    <industry.icon size={15} strokeWidth={2} />
                   </div>
                   <span className="text-[13px] font-bold text-foreground leading-tight tracking-tight">
                     {industry.label}

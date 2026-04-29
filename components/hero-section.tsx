@@ -25,7 +25,7 @@ function buildGrid(
   el: HTMLDivElement,
   containerW: number,
   containerH: number,
-  cellSize: number
+  cellSize: number,
 ) {
   el.innerHTML = "";
 
@@ -127,7 +127,7 @@ export default function HeroSection() {
         <GridBackground className="absolute inset-0 z-0" />
         <FloatingSkills />
 
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center md:max-w-6xl mx-auto space-y-2 ">
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center md:max-w-6xl mx-auto space-y-2 px-5 sm:px-0">
           <h1 className="font-poppins text-4xl z-10 md:text-6xl 2xl:text-7xl font-medium leading-tight text-primary">
             WEB AND MOBILE
             <br className="hidden sm:block" /> APP DEVELOPMENT
@@ -142,17 +142,17 @@ export default function HeroSection() {
             web and mobile applications with robust user-experience matching
             your deadlines.
           </p>
-          <div className="flex z-10 flex-col sm:flex-row items-center gap-5 pt-6 2xl:pt-10 font-poppins">
+          <div className="flex z-10 flex-col sm:flex-row items-center gap-5 sm:w-fit pt-6 2xl:pt-10 font-poppins">
             <Button
               size="lg"
-              className="h-14 px-8 text-sm md:text-base  font-semibold"
+              className="h-12 sm:h-14 px-8 text-sm md:text-base w-full sm:w-fit font-semibold"
             >
               GET A QUOTE
             </Button>
             <Button
               size="lg"
               variant="ghost"
-              className="h-14 px-8 text-sm md:text-base font-semibold bg-foreground text-background"
+              className="h-12 sm:h-14 px-8 text-sm md:text-base w-full sm:w-fit font-semibold bg-foreground text-background"
             >
               OUR SOLUTION
             </Button>

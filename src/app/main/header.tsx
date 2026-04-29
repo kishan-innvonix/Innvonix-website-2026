@@ -53,12 +53,12 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out border-b border-white/5 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out border-b border-white/5 h-20 ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       } ${
         lastScrollY > 20
-          ? "bg-background/80 backdrop-blur-xl h-20 shadow-sm"
-          : "bg-transparent h-24"
+          ? "bg-background/80 backdrop-blur-xl shadow-sm"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
@@ -67,13 +67,13 @@ export default function Header() {
             loading="eager"
             src={logoDark}
             alt="Innvonix"
-            className="h-8 w-auto object-contain hidden dark:block"
+            className="h-10 w-auto object-contain hidden dark:block"
           />
           <Image
             loading="eager"
             src={logoLight}
             alt="Innvonix"
-            className="h-8 w-auto object-contain block dark:hidden"
+            className="h-10 w-auto object-contain block dark:hidden"
           />
         </Link>
 
@@ -112,7 +112,11 @@ export default function Header() {
           <div className="xl:hidden">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-10 w-10 flex flex-col gap-1.5 items-center justify-center">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-10 w-10 flex flex-col gap-1.5 items-center justify-center"
+                >
                   <span className="h-[2px] w-6 bg-foreground rounded-full" />
                   <span className="h-[2px] w-6 bg-foreground rounded-full" />
                   <span className="h-[2px] w-6 bg-foreground rounded-full" />
@@ -124,12 +128,12 @@ export default function Header() {
                     <Image
                       src={logoLight}
                       alt="Innvonix"
-                      className="h-8 w-auto block dark:hidden"
+                      className="h-10 w-auto block dark:hidden"
                     />
                     <Image
                       src={logoDark}
                       alt="Innvonix"
-                      className="h-8 w-auto hidden dark:block"
+                      className="h-10 w-auto hidden dark:block"
                     />
                   </SheetTitle>
                 </SheetHeader>
